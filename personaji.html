@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Персонажи рассказов</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 1. Скрытый чекбокс (переключатель) -->
+    <input type="checkbox" id="menu-toggle">
+    <!-- 2. Кнопка (гамбургер), которая открывает меню -->
+    <label for="menu-toggle" class="menu-btn">☰</label>
+<!-- 3. Само выезжающее меню -->
+    <nav class="sidebar">
+        <label for="menu-toggle" class="close-btn">✕</label> <!-- Кнопка закрытия -->
+        <a href="index.html">Главная</a>
+        <a href="#">Рассказы</a>
+        <a href="#">Персонажи</a>
+        <a href="#">Обо мне</a>
+    </nav>
+    <h1>Characters</h1>
+    <p style="text-indent: 40px; margin: 20px auto; max-width: 800px; text-align: center;">Если ты тут значит кнопки в меню работают. Тут можешь нажать на кнопку карточки персанажа и узнать о нем больше чем в рассказах.</p>
+    <div class="main-content"> 
+    <img src="vika_pers.png" id="vika_pers" class="glav_photo">
+     <!-- КОНТЕЙНЕР ДЛЯ КАРТОЧЕК -->
+<div class="characters-cards">
+    <h2 class="cards-title">Основные персонажи:</h2>
+    <!-- Карточка 1 (Девушка) -->
+    <div class="card" onclick="openModal('Desta', 'Возраст примерно 20 лет. Профессия(специальность):программист. Хобби: игра на гитаре, катание на скейте(летом)', 'desta_real.png')">
+        <h3>Деста</h3>
+        <!-- Можно добавить маленькую картинку в саму карточку -->
+        <img src="desta_kard.png" alt="Деста">
+    </div>
+
+    <!-- Карточка 2 (Парень) -->
+    <div class="card" onclick="openModal('Люк', 'Возрост примерно 20лет. Профессия(специальность): Актер. Хобби:Нету так как почти все время на съемках(автор не придумал)', 'lui_real.png')">
+        <h3>Луи</h3>
+        <img src="lui_kard.png" alt="Луи">
+    </div>
+     <div class="card" onclick="openModal('Мик', 'Возрост примерно 20лет. Профессия(специальность): Системный админитратор. Хобби:Шахматы или стратегические игры', 'mik_real.png')">
+        <h3>Мик</h3>
+        <img src="mik_kard.png" alt="Мик">
+    </div>
+    <div class="card" onclick="openModal('Вика', 'Возрост примерно 20лет. Профессия(специальность): Дизайнер. Хобби:Танцы, рисование и все что связано с творчеством', 'vika_real.png')">
+        <h3>Вика</h3>
+        <img src="vika_kard.png" alt="Вика">
+    </div>
+    <div class="card" onclick="openModal('Аля', 'Возрост примерно 20лет. Профессия(специальность): Повар-кондитер. Хобби:Пение ира на барабанах, учится играть на гитаре', 'alya_real.png')">
+        <h3>Аля</h3>
+        <img src="alya_kard.png" alt="Аля">
+    </div>
+     <div class="card" onclick="openModal('Максим', 'Возрост примерно 20лет. Профессия(специальность): Химик. Хобби:Химичить, играть в стратегические игры, читать книги', 'max_real.png')">
+        <h3>Макс</h3>
+        <img src="max_kard.png" alt="Аля">
+    </div>
+</div>
+</div>
+<!-- ========================================== -->
+<!-- САМО ВСПЛЫВАЮЩЕЕ ОКНО (Скрой его, оно появится само) -->
+<!-- ========================================== -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">✕</span>
+        <h2 id="modal-title">Имя</h2>
+        <img id="modal-img" src="" alt="Персонаж">
+        <p id="modal-desc">Описание...</p>
+    </div>
+</div>
+     
+    
+
+
+
+
+<script>
+    // Функция открытия окна (принимает имя, описание и ссылку на картинку)
+    function openModal(name, desc, imgSrc) {
+        document.getElementById('modal-title').innerText = name;
+        document.getElementById('modal-desc').innerText = desc;
+        
+        // Если есть картинка, ставим её
+        if (imgSrc) {
+            document.getElementById('modal-img').src = imgSrc;
+            document.getElementById('modal-img').style.display = 'block';
+        } else {
+            document.getElementById('modal-img').style.display = 'none'; // Скрываем, если картинки нет
+        }
+
+        // Показываем окно
+        document.getElementById('myModal').style.display = 'block';
+    }
+
+    // Функция закрытия окна (по крестику)
+    function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+    }
+
+    // Закрытие окна, если кликнуть мимо него (по темному фону)
+    window.onclick = function(event) {
+        let modal = document.getElementById('myModal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+<div style="height: 300px;"></div> 
+</body>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,263 @@
+body {
+    background-color: black;
+}
+a{
+    color: #ff4747;
+    font-size: 25px;
+    text-shadow: 3px 3px 5px red;
+}
+a:hover{
+    color: rgb(255, 0, 0);
+    font-size: 30px;
+}
+
+h1 {
+    font-size: clamp(30px, 8vw, 80px);
+    width: 100%;
+    font-family: 'Lucida Calligraphy', cursive, sans-serif; /* добавил запасные шрифты */
+    text-align: center;
+    color: #ff1a1a; /* Яркий красный */
+    
+    /* Многослойное свечение */
+    text-shadow: 
+        0 0 5px #000000,
+        0 0 10px #ff0000,
+        0 0 20px #ff0000,
+        0 0 40px #ff0000,
+        0 0 80px #ff0000;
+}
+#desta_glavnaya{
+    width: 20%;
+    max-width: 100%;
+    height: 30%;
+    max-height: 100%;
+    margin-top: -200px;
+    margin-left: 350px;
+}
+#vika_pers{
+    width: 30%;
+    max-width: 100%;
+    height: 30%;
+    max-height: 100%;
+    margin-top: -2%;
+    margin-left: -5%;
+}
+.glav_photo{
+filter: drop-shadow(0 0 10px rgb(163, 4, 4));
+}
+#lui_glav{
+     position: absolute; 
+    right: -10%;       /* Отступ от правого края экрана */
+    float: right;        /* Прижимает картинку к правому краю */
+    margin: 0; 
+    width: 75%;
+    max-width: 30vw;
+    height: 75%;
+    max-height: 100%;
+}
+p{
+    margin-right: 10%;
+    text-indent: 40px;
+    margin-left: 5%;
+    color: antiquewhite;
+    font-size: 25px;
+
+}
+#menu-toggle {
+    display: none; 
+}
+
+/* Кнопка "Гамбургер" (☰) */
+.menu-btn {
+    position: fixed;      /* Всегда висит на экране */
+    top: 20px;            /* Отступ сверху */
+    left: 20px;           /* Отступ слева */
+    font-size: 35px;
+    color: #ff3333;       /* Красный цвет */
+    cursor: pointer;
+    z-index: 1000;        /* Поверх всех остальных элементов */
+    text-shadow: 0 0 10px red; /* Свечение */
+    transition: 0.3s;
+}
+.menu-btn:hover {
+    color: white;
+    text-shadow: 0 0 20px rgb(250, 21, 21);
+}
+
+/* Само выезжающее меню (Сайдбар) */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;         /* Ширина меню */
+    height: 100vh;        /* На всю высоту экрана */
+    background-color: #0a0a0a; /* Почти черный фон */
+    border-right: 2px solid #ff3333; /* Красная полоса справа */
+    box-shadow: 5px 0 20px rgba(255, 0, 0, 0.3); /* Красная тень */
+     display: flex;
+    flex-direction: column; /* Ссылки друг под другом */
+    padding-top: 80px;    /* Отступ сверху, чтобы не мешать крестику */
+    gap: 20px;            /* Расстояние между ссылками */
+    
+    /* МАГИЯ: Изначально меню сдвинуто влево за экран на 100% своей ширины */
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-in-out; /* Плавная анимация выезда */
+    z-index: 999;         /* Чуть ниже кнопки-гамбургера */
+}
+/* Ссылки внутри меню */
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    padding: 10px 30px;
+    transition: 0.3s;
+}
+/* Подсветка ссылок при наведении */
+.sidebar a:hover {
+    color: #ff3333;
+    text-shadow: 0 0 8px red;
+    padding-left: 40px; /* Текст чуть сдвигается вправо при наведении */
+}
+
+/* Кнопка закрытия (крестик) внутри меню */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 25px;
+    color: #ff3333;
+    cursor: pointer;
+}
+/* Если чекбокс с id="menu-toggle" нажат (checked), то соседний .sidebar выезжает на 0 */
+#menu-toggle:checked ~ .sidebar {
+    transform: translateX(0);
+}
+
+/* Когда меню открыто, гамбургер можно скрыть (чтобы не мешал) */
+#menu-toggle:checked ~ .menu-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+.characters-cards {
+    position: absolute;      
+    justify-content: center; /* Центрирует карточки внутри контейнера */
+    width: 600px;  
+    /* Двигай этими цифрами, чтобы вся группа (заголовок + карточки) встала идеально */
+    top: 250px;              /* Если заголовок поднял карточки слишком высоко, увеличь это число */
+    left: 250px;             /* Если наезжает на девушку, увеличь это число (например, до 550px) */
+    bottom: 100px;  
+    
+    display: flex;           
+    flex-direction: row;     
+    flex-wrap: wrap;         /* <--- ГЛАВНАЯ МАГИЯ: разрешает переносить элементы на новую строку */
+    gap: 20px;               
+    z-index: 999;             
+    width: fit-content;      /* Контейнер будет ровно по размеру карточек, не больше */
+}
+
+/* Стили самой карточки оставляем без изменений */
+.card {
+    background-color: #0a0a0a;
+    border: 2px solid #ff3333;
+    border-radius: 10px;
+    padding: 20px;
+    width: 200px;            
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+.card:hover {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    transform: translateY(-5px); /* Чуть подпрыгивают при наведении */
+}
+@media (max-width: 900px) {
+    .characters-cards {
+        position: relative; /* На телефоне ставим их обратно в поток */
+        top: 0;
+        left: 0;
+        flex-direction: column; /* На телефоне лучше столбиком */
+        margin: 50px auto;
+    }
+}
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 5000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.modal-content {
+    background-color: #111;
+    margin: 5% auto; 
+    padding: 30px;
+    border: 2px solid #ff3333;
+    border-radius: 15px;
+    
+    /* Ширина окна */
+    width: 80%;
+    max-width: 600px; 
+    
+    /* Высота окна: если контента много, появится скролл */
+    max-height: 85vh; 
+    overflow-y: auto; 
+    
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.4);
+    position: relative;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #ff3333;
+    font-size: 30px;
+    cursor: pointer;
+}
+/* Стили для заголовка над карточками */
+.cards-title {
+      text-align: center; 
+    width: 100%;             /* Заставляет заголовок занять всю верхнюю строку */
+    text-align: center;        /* Выравнивает заголовок по левому краю (ровно над первой карточкой) */
+    color: #ff3333;          
+    font-size: 24px;         
+    margin-top: 5%;
+    margin-bottom: 5px;      /* Небольшой отступ от заголовка до карточек */
+    text-shadow: 0 0 10px red; 
+    font-family: Arial, sans-serif; 
+}
+.card img {
+    width: 100%;           /* Картинка занимает всю ширину карточки (но не больше) */
+    height: 200px;         /* Задаем одинаковую высоту для всех картинок, чтобы карточки были ровными */
+    object-fit: cover;     /* Картинка заполняет блок, обрезая лишнее по краям (не сплющивается) */
+    border-radius: 5px;    /* Слегка скругляем углы у картинки */
+    margin-top: 10px;      /* Отступ от имени персонажа до картинки */
+    display: block;        /* Убирает лишний пустой отступ снизу */
+}
+#modal-img {
+    max-width: 100%;      /* Картинка не будет шире самого окна */
+    max-height: 400px;    /* Ограничиваем высоту картинки (можешь поменять число) */
+    object-fit: contain;  /* Картинка вписывается полностью, не искажаясь и не обрезаясь */
+    display: block;
+    margin: 20px auto;    /* Центрируем картинку по горизонтали */
+    border-radius: 10px;  /* Красиво скругляем углы */
+}
+
+/* Настройки для текста описания */
+#modal-desc {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: left;     /* Текст читать слева направо удобнее */
+    margin-top: 15px;
+}
