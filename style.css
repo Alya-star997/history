@@ -339,3 +339,49 @@ p{
     text-align: left;     /* Текст читать слева направо удобнее */
     margin-top: 15px;
 }
+/* Специальное окно для галереи (шире, чем обычное) */
+.gallery-content {
+    max-width: 800px !important; /* Делаем окно шире */
+    width: 90% !important;
+}
+
+/* Сетка для фотографий */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Автоматически ставит фото в ряд */
+    gap: 15px; /* Расстояние между фото */
+    margin-top: 20px;
+}
+
+/* Настройки для картинок внутри галереи */
+.gallery-grid img {
+    width: 100%;
+    height: 150px; /* Одинаковая высота */
+    object-fit: cover; /* Чтобы не сплющивались */
+    border-radius: 8px;
+    border: 2px solid #ff3333; /* Красная рамка */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    transition: 0.3s;
+}
+
+/* Эффект при наведении на фото в галерее */
+.gallery-grid img:hover {
+    transform: scale(1.05); /* Фото чуть увеличивается */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8); /* Свечение становится ярче */
+}
+/* Стили для фото на странице "Обо мне" */
+
+#ya1 {
+    width: 350px;         /* Размер фото (можешь поставить 300px или 500px) */
+    max-width: 90%;       /* Защита для телефонов, чтобы фото не вылезало за экран */
+    height: auto;         /* Сохраняет правильные пропорции */
+    
+    display: block;       
+    margin-left: 70px;   /* СДВИГ ВЛЕВО. 150px — это чтобы фото не налезло на меню-гамбургер. Можешь уменьшить или увеличить */
+    margin-top: 30px;     /* Отступ от заголовка "About the author" */
+    margin-bottom: 30px;  /* Отступ снизу */
+    
+    border-radius: 15px;  /* Красиво скругляет углы */
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); /* Красное свечение вокруг фото (как у карточек) */
+    cursor: pointer;      /* Курсор-рука, раз на нее можно нажать */
+}

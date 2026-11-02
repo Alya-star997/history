@@ -16,8 +16,8 @@
         <label for="menu-toggle" class="close-btn">✕</label> <!-- Кнопка закрытия -->
         <a href="index.html">Главная</a>
         <a href="#">Рассказы</a>
-        <a href="#">Персонажи</a>
-        <a href="#">Обо мне</a>
+        <a href="#" onclick="alert('Вы уже находитесь тут'); return false;">Персонажи</a>
+        <a href="obomne.html">Обо мне</a>
     </nav>
     <h1>Characters</h1>
     <p style="text-indent: 40px; margin: 20px auto; max-width: 800px; text-align: center;">Если ты тут значит кнопки в меню работают. Тут можешь нажать на кнопку карточки персанажа и узнать о нем больше чем в рассказах.</p>
@@ -34,7 +34,7 @@
     </div>
 
     <!-- Карточка 2 (Парень) -->
-    <div class="card" onclick="openModal('Люк', 'Возрост примерно 20лет. Профессия(специальность): Актер. Хобби:Нету так как почти все время на съемках(автор не придумал)', 'lui_real.png')">
+    <div class="card" onclick="openModal('Луи', 'Возрост примерно 20лет. Профессия(специальность): Актер. Хобби:Нету так как почти все время на съемках(автор не придумал)', 'lui_real.png')">
         <h3>Луи</h3>
         <img src="lui_kard.png" alt="Луи">
     </div>

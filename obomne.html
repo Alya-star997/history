@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Об авторе</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 1. Скрытый чекбокс (переключатель) -->
+    <input type="checkbox" id="menu-toggle">
+    <!-- 2. Кнопка (гамбургер), которая открывает меню -->
+    <label for="menu-toggle" class="menu-btn">☰</label>
+<!-- 3. Само выезжающее меню -->
+    <nav class="sidebar">
+        <label for="menu-toggle" class="close-btn">✕</label> <!-- Кнопка закрытия -->
+        <a href="index.html">Главная</a>
+        <a href="#">Рассказы</a>
+        <a href="personaji.html">Персонажи</a>
+        <a href="#" onclick="alert('Вы уже находитесь тут'); return false;">Обо мне</a>
+    </nav>
+<div class="header-group">
+    <h1>About the author</h1>
+    <h1 style="font-size: 25px; margin-top: -5%;">Опытные программисты найдитесь пж...</h1>
+   <!-- Пример: добавляем onclick и style="cursor: pointer;" -->
+<!-- ТЕСТОВЫЙ БЛОК -->
+<div style="display: flex; flex-direction: row; align-items: flex-start; gap: -10px; padding-left: 100px; padding-right: -10%; margin-top: 50px;">
+    
+    <img src="ya1.jpg" style="width: 350px; height: auto; border-radius: 15px; box-shadow: 0 0 20px red; flex-shrink: 0; ">
+    
+    <div style="color: antiquewhite; font-size: 22px; line-height: 1.5;">
+        <p>И снова привет. Если ты ТУТ, в этой вкладке, значит тебе все таки интересно что это за сайт. Короче поясняю историю...</p>
+        <p>Все началось с 2018 года. Мне тогда подруга показала первую игру "Gacha Live". Я создавала там слишком много персов, что даже не вспомнить какая ос была первой.
+            Потом появился "Gacha Club". Я долго еще не переходила, но когда перешла была вахуе, что там совсем по другому. Типо интерфейс схож, но там намного разнообразней вещи и позы.
+            Там я пробыла около 3 лет. С 2024года я перешла в "Gacha2". Год снимала в тт и в <a href="https://www.youtube.com/@DestaUuU">ютуб.</a> В ютубе популярность набрать сложно, зато в тт у меня видео залетали.
+            Ну по крайней мере то определеного времени. Потом актив упал и я забила на это, но так как я с детства люблю фантазировать, я не могла успокоится. В мою голову лезло слишком много сюжетов. Я пыталась сделать видео которые не залетали, я писала рассказы в тгк которые никто не читал.
+            В конце концов сдалась и всю энергию перенесла в учебу. И вот недавно я пообщалась с одногрупницей и думаю, что надо попробовать совместить и "работу" и хобби. Вот так я и пришла к идее этого сайта.
+            Надеюсь после выкладывания в тт этот сайт хоть немного наберет популярности, потому что в будущем я хочу развивать его (он красивый получился)
+        </p>
+    </div>
+
+</div>
+
+
+<footer>
+    <div style="text-align: center;">
+    <p>Мои соц сети:</p>
+    <a href="https://t.me/destaUuU">Тгк (Для связи со мной):DestaUuU</a>  <p style="margin-right: 18%;";>Можете написать в сообщениях или под постом</p> <p style="margin-right: 18%;";>(Может быть, когда-нибудь, я сделаю штуку для отзывов)</p><a href="https://www.tiktok.com/@deess377?_r=1&_t=ZS-9B4NFG6va6i">ТикТок(ну на всякий):deess377</a>
+</div>
+</footer>
+
+
+<script>
+    // Функция открытия окна (принимает имя, описание и ссылку на картинку)
+    function openModal(name, desc, imgSrc) {
+        document.getElementById('modal-title').innerText = name;
+        document.getElementById('modal-desc').innerText = desc;
+        
+        // Если есть картинка, ставим её
+        if (imgSrc) {
+            document.getElementById('modal-img').src = imgSrc;
+            document.getElementById('modal-img').style.display = 'block';
+        } else {
+            document.getElementById('modal-img').style.display = 'none'; // Скрываем, если картинки нет
+        }
+
+        // Показываем окно
+        document.getElementById('myModal').style.display = 'block';
+    }
+
+    // Функция закрытия окна (по крестику)
+    function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+    }
+
+    // Закрытие окна, если кликнуть мимо него (по темному фону)
+    window.onclick = function(event) {
+        let modal = document.getElementById('myModal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+<script>//второй скрипт
+    // Открыть галерею
+function openGallery() {
+    document.getElementById('gallery-modal').style.display = 'block';
+}
+
+// Закрыть галерею по крестику
+function closeGallery() {
+    document.getElementById('gallery-modal').style.display = 'none';
+}
+
+// Закрыть галерею, если кликнуть мимо окна (по темному фону)
+window.addEventListener('click', function(event) {
+    let galleryModal = document.getElementById('gallery-modal');
+    if (event.target == galleryModal) {
+        galleryModal.style.display = 'none';
+    }
+});
+</script>
+<div style="height: 300px;"></div> 
+<!-- ОКНО ГАЛЕРЕИ -->
+<div id="gallery-modal" class="modal">
+    <div class="modal-content gallery-content">
+        <span class="close-modal" onclick="closeGallery()">✕</span>
+        <h2 style="color: #ff3333; text-shadow: 0 0 10px red;">Дополнительные фото</h2>
+        <h3 style="color: #ff3333; text-shadow: 0 0 10px red;">Все фото созданы нейронкой!</h3>
+        
+        <div class="gallery-grid">
+            <!-- Сюда вставляй свои фотографии -->
+            <img src="ya2.jpg" alt="Фото 1">
+            <img src="ya3.jpg" alt="Фото 2">
+            <img src="ya4.jpg" alt="Фото 3">
+            <img src="ya5.jpg" alt="Фото 4">
+        </div>
+    </div>
+</div>
+</body>
+</html>
