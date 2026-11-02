@@ -385,3 +385,75 @@ p{
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); /* Красное свечение вокруг фото (как у карточек) */
     cursor: pointer;      /* Курсор-рука, раз на нее можно нажать */
 }
+/* --- ОБЩАЯ ОБЕРТКА (Столбиком: сначала фото, потом текст) --- */
+.gallery-wrapper {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    /* Центрирует фото и текст внутри */
+    gap: 40px;              
+     padding: 50px 30px; 
+    /* Фиксируем ширину блока, чтобы он не растягивался на весь экран */
+    max-width: 1400px;        
+    margin: 0 auto;         /* Автоматически центрирует блок на странице */
+    padding-top: 50px;      
+    padding-bottom: 50px;
+}
+
+/* --- РЯД С ФОТОГРАФИЯМИ --- */
+.photo-row {
+    display: flex;          
+    justify-content: center; /* Фото ровно по центру */
+    gap: 20px;              
+    flex-wrap: wrap;        
+    width: 100%;
+}
+
+/* --- САМИ ФОТОГРАФИИ --- */
+.gallery-img {
+    width: 300px;           /* Ширина одной фотографии (можешь сделать 250px или 350px) */
+    height: 400px;          /* Высота (сделает все фото одного размера) */
+    object-fit: cover;      /* Чтобы фото не плющились, а красиво обрезались */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); /* Красное свечение */
+    transition: 0.3s;       /* Плавный эффект при наведении */
+}
+
+.gallery-img:hover {
+    transform: scale(1.05); /* Фото чуть увеличивается при наведении мышки */
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+}
+
+/* --- ТЕКСТ ПОД ФОТО --- */
+.text-below {
+    color: antiquewhite;
+    font-size: 22px;
+    line-height: 1.6;
+    
+    width: 100%;            /* Занимает всю ширину обертки (1000px) */
+      max-width: 1500px;      /* Но сам текст ограничен 800px для читаемости */
+}
+
+.text-below p {
+    text-indent: 40px;      /* Вернул красную строку, так красивее */
+    margin-bottom: 20px;
+    text-align: justify;    /* Текст ровный с обеих сторон, как в книгах */
+}
+
+/* ========================================= */
+/* АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ */
+/* ========================================= */
+@media (max-width: 900px) {
+    .gallery-wrapper {
+        padding: 20px !important; /* Убираем отступы для меню */
+    }
+    
+    .photo-row {
+        justify-content: center; /* На телефоне фото по центру */
+    }
+    
+    .gallery-img {
+        width: 100%;          /* На телефоне фото занимает всю ширину */
+        max-width: 350px;
+        height: auto;         /* Высота подстраивается */
+    }
+}
