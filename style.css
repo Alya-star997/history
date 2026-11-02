@@ -1,5 +1,70 @@
 body {
     background-color: black;
+    overflow-x: hidden;
+}
+.top-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;               /* Расстояние между девушкой и словом Desta */
+    margin-top: 50px;
+    margin-bottom: 40px;
+    padding-left: 150px;     /* Отступ от меню слева */
+}
+
+/* Фиксируем красную девушку на месте */
+.img-desta {
+    width: 250px;            /* Размер */
+    height: auto !important; /* Запрещаем сплющивать */
+    position: static !important; /* Убиваем старые привязки */
+    margin: 0 !important;
+    filter: drop-shadow(0 0 15px #ff3333);
+}
+.main-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;     /* Парень будет ровно по центру текста */
+    gap: 50px;               /* Расстояние между текстом и парнем */
+    max-width: 1300px;
+    margin: 0 auto;          /* Центрируем весь блок */
+    padding-left: 150px;     /* Отступ от меню */
+}
+
+/* Текст */
+.text-box {
+    max-width: 800px;
+    color: white;
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.text-box p {
+    text-indent: 40px;       /* Красная строка */
+    margin-bottom: 20px;
+}
+
+/* Фиксируем желтого парня */
+.img-lui {
+    width: 200px;            /* Размер парня */
+    height: auto !important; /* ГЛАВНОЕ: он больше не будет сплющенным */
+    object-fit: contain;     /* Сохраняет пропорции */
+    position: static !important;
+    margin: 0 !important;
+    filter: drop-shadow(0 0 15px #ff3333);
+}
+@media (max-width: 900px) {
+    .top-header, .main-body {
+        flex-direction: column; /* На телефоне всё друг под другом */
+        padding-left: 0;        /* Убираем отступы меню */
+        text-align: center;
+    }
+    .img-desta, .img-lui {
+        width: 200px;           /* Уменьшаем картинки на телефоне */
+    }
+    .text-box p {
+        text-indent: 0;         /* Убираем красную строку для ровного текста */
+    }
 }
 a{
     color: #ff4747;
@@ -27,8 +92,10 @@ h1 {
         0 0 80px #ff0000;
 }
 #desta_glavnaya{
+    position: relative; 
+    margin: 20px auto;
     width: 20%;
-    max-width: 100%;
+    max-width: 350px;
     height: 30%;
     max-height: 100%;
     margin-top: -200px;
@@ -46,13 +113,13 @@ h1 {
 filter: drop-shadow(0 0 10px rgb(163, 4, 4));
 }
 #lui_glav{
-     position: absolute; 
+     position: relative; 
     right: -10%;       /* Отступ от правого края экрана */
     float: right;        /* Прижимает картинку к правому краю */
     margin: 0; 
-    width: 75%;
+    width: 80%;
     max-width: 30vw;
-    height: 75%;
+    height: auto;
     max-height: 100%;
 }
 p{
