@@ -259,7 +259,14 @@ p{
     .characters-cards {
         position: relative; /* На телефоне ставим их обратно в поток */
         top: 0;
+         padding: 20px 15px; /* 15px по бокам, чтобы карточки не касались краев */
+        margin-top: 60px
         left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
         flex-direction: column; /* На телефоне лучше столбиком */
         margin: 50px auto;
     }
@@ -312,7 +319,7 @@ p{
     width: 100%;             /* Заставляет заголовок занять всю верхнюю строку */
     text-align: center;        /* Выравнивает заголовок по левому краю (ровно над первой карточкой) */
     color: #ff3333;          
-    font-size: 24px;         
+    font-size: 20px;         
     margin-top: 5%;
     margin-bottom: 5px;      /* Небольшой отступ от заголовка до карточек */
     text-shadow: 0 0 10px red; 
