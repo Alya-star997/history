@@ -125,11 +125,12 @@ filter: drop-shadow(0 0 10px rgb(163, 4, 4));
      position: absolute; 
      justify-content: flex-start;
      padding-right: -100px;
-    right: -5%;       /* Отступ от правого края экрана */
+    right: -5%;   
+    margin-top: -20%;    /* Отступ от правого края экрана */
     float: right;        /* Прижимает картинку к правому краю */
     margin-right: 0;
     width: 100%;
-    max-width: 45vw;
+    max-width: 25vw;
     height: auto;
     max-height: 100%;
 }
