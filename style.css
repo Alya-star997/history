@@ -134,11 +134,13 @@ filter: drop-shadow(0 0 10px rgb(163, 4, 4));
     max-height: 100%;
 }
 p{
-    margin-right: 25%;
+    margin-right: 0;
     text-indent: 40px;
-    margin-left: 15%;
+    text-align: center;
+    margin-left: 5%;
     color: antiquewhite;
-    font-size: 25px;
+    font-size: 20px;
+   
 
 }
 #menu-toggle {
