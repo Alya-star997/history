@@ -470,3 +470,314 @@ p{
         height: auto;         /* Высота подстраивается */
     }
 }
+#max_history{
+      position: absolute;      /* ГЛАВНОЕ: позволяет двигать картинку куда угодно */
+    top: 3%;              /* Отступ от верхнего края (подгони под заголовок History) */
+    right: 2%;             /* Отступ от правого края экрана */
+    
+    width: 14%;            /* Размер */
+    height: auto;            /* Запрещаем сплющивать */
+    object-fit: contain;     /* Сохраняет пропорции */
+    
+    margin: 0; 
+filter: drop-shadow(0 0 15px #ff3333);
+}
+.stories-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 50px auto;
+}
+
+.story-card {
+    background-color: #111;
+    border: 2px solid #ff3333;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    color: white;
+    transition: 0.3s;
+}
+
+/* Этот класс мы будем добавлять через JS, если рассказ прочитан */
+.story-card.read {
+    border-color: #00ff00; /* Зеленая рамка */
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3); /* Зеленое свечение */
+}
+
+.read-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #ff3333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.reader-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    color: antiquewhite;
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+.text-content {
+    min-height: 300px; /* Чтобы страница не прыгала, если текста мало */
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.controls button {
+    background-color: #ff3333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.controls button:disabled {
+    background-color: #555; /* Кнопка неактивна, если страница первая/последняя */
+    cursor: not-allowed;
+}
+
+.finish-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #00aa00; /* Зеленая кнопка */
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.back-link {
+    color: #ff3333;
+}
+/* --- МЕНЮ ГЛАВ СБОКУ --- */
+.chapter-sidebar {
+    position: fixed;         /* Прибиваем к экрану */
+    right: 20px;             /* Отступ от правого края */
+    top: 50%;                /* Ставим по центру экрана */
+    transform: translateY(-50%); /* Точное центрирование */
+    
+    background-color: #111;
+    border: 2px solid #ff3333;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    z-index: 100;
+    width: 150px;
+}
+
+.chapter-sidebar h3 {
+    color: #ff3333;
+    margin: 0 0 10px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+
+.chapter-btn {
+    background-color: transparent;
+    color: white;
+    border: 1px solid #555;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-family: inherit;
+    font-size: 16px;
+    text-align: left;
+}
+
+.chapter-btn:hover {
+    background-color: #ff3333;
+    border-color: #ff3333;
+    color: black;
+    font-weight: bold;
+}
+
+/* Активная глава (которую сейчас читают) */
+.chapter-btn.active {
+    background-color: #ff3333;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 0 10px red;
+}
+
+/* ========================================= */
+/* АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ */
+/* ========================================= */
+@media (max-width: 900px) {
+    /* На телефоне меню не висит сбоку, а встает в начало рассказа */
+    .chapter-sidebar {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin: 0 auto 20px auto;
+        flex-direction: row; /* Кнопки в ряд */
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+}
+/* --- ИЛЛЮСТРАЦИИ В ТЕКСТЕ --- */
+.story-img {
+    display: block;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid #ff3333;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+    cursor: zoom-in;
+    transition: 0.3s;
+}
+
+.story-img:hover {
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+    transform: scale(1.02);
+}
+
+/* --- ОКНО ГАЛЕРЕИ (ЛАЙТБОКС) --- */
+.gallery-modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 9999; /* Поверх всего */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Почти черный фон */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Картинка внутри галереи */
+#gallery-main-img {
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+    object-fit: contain;
+}
+
+/* Кнопка закрытия */
+.close-gallery {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #ff3333;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10000;
+}
+.close-gallery:hover { color: white; text-shadow: 0 0 10px red; }
+
+/* Кнопки навигации (Влево/Вправо) */
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #ff3333;
+    border: 2px solid #ff3333;
+    font-size: 30px;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s;
+    z-index: 10000;
+}
+.gallery-nav:hover {
+    background: #ff3333;
+    color: black;
+    box-shadow: 0 0 15px red;
+}
+.gallery-nav.prev { left: 20px; }
+.gallery-nav.next { right: 20px; }
+.image-row {
+    display: flex ;       /* Принудительно ставим в ряд */
+    flex-direction: row ; /* Запрещаем перенос в столбик */
+    justify-content: center ; 
+    align-items: center;
+    gap: 20px;                      /* Расстояние между ними */
+    margin: 30px auto;
+    width: 100%;
+}
+.image-row .story-img {
+    width: 45% ;          /* Каждая занимает 45% ширины (чтобы влезли вдвоем) */
+    max-width: 400px ;    /* Ограничитель размера */
+    margin: 0 ;           /* Убиваем старые отступы, которые ломают ряд */
+}
+
+/* --- ОДИНОЧНАЯ КАРТИНКА (если она не в ряду) --- */
+.text-content > .story-img {
+    width: 100%;
+    max-width: 600px;
+    margin: 30px auto;
+}
+@media (max-width: 768px) {
+    .image-row {
+        flex-direction: column !important; /* На телефоне ставим друг под другом */
+    }
+    .image-row .story-img {
+        width: 100% !important;         /* На телефоне картинки на всю ширину */
+        max-width: 100% !important;
+    }
+}
+/* Контейнер для кнопок в карточке */
+.card-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Расстояние между кнопками */
+    margin-top: 15px;
+}
+
+/* Стили для кнопки Информация */
+.info-btn {
+    background-color: transparent;
+    color: #ff3333;
+    border: 2px solid #ff3333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: inherit;
+    transition: 0.3s;
+}
+
+.info-btn:hover {
+    background-color: #ff3333;
+    color: white;
+    box-shadow: 0 0 15px red;
+}
+
+/* Делаем так, чтобы кнопка Читать и Инфо были одного размера */
+.read-btn, .info-btn {
+    margin: 0; 
+    padding: 10px 20px;
+    font-size: 16px;
+    box-sizing: border-box; 
+    display: inline-block;
+}

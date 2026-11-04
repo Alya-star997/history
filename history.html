@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рассказы</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Меню -->
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="menu-btn">☰</label>
+    <nav class="sidebar">
+        <label for="menu-toggle" class="close-btn">✕</label>
+        <a href="index.html">Главная</a>
+        <a href="#" onclick="alert('Вы уже находитесь тут'); return false;">Рассказы</a>
+        <a href="personaji.html">Персонажи</a>
+        <a href="obomne.html">Обо мне</a>
+    </nav>
+
+    <h1>History</h1>
+    
+    <div class="history">
+        <img src="max_history.png" id="max_history" class="glav_photo">
+    </div>
+
+    <h2 style="text-align: center;">Здесь находятся рассказы. Нажав на карточку рассказа можно его почитать. Так же есть кнопка <i>Информация</i>, нажав на нее можно посмотреть когда был создан рассказ</h2>
+    <h2 style="text-align: center;">В "Сюжетка" рассказывается о жизни главныйх героев. Он никак не взаимосвязан с обычными историями, если в информации рассказа нету пометки <i><u>"P"</u></i> </h2>
+    <h2 style="text-align: center; color: red;">В РАССКАЗАХ ПРИСУТСТВУЕТ НЕЦЕНЗУРНАЯ ЛЕКСИКА!!!!</h2>
+    <h2 style="text-align: center;"> Для удобства чтения(и запоминания где остаовились) я сделала каждую главу на каждую страницу (1глава=1страница)</h2>
+
+    <h2 style="font-family: 'Times New Roman', Times, serif; top: 0; text-align: center;"><u><i>Сюжетка:</i></u></h2>
+    <h2 style="text-align: center; color: aqua;">На данный момент сюжетка отсутствует</h2>
+    <h2 style="font-family: 'Times New Roman', Times, serif; top: 0; text-align: center;"><u><i>Обычная история:</i></u></h2>
+
+    <!-- Карточка рассказа. ID="story_last_shot" -->
+    <div class="story-card" id="story_last_shot" style="text-align: center; margin-left: 2%;">
+        <p style="padding-right: 14%;"><b>Последний выстрел</b></p>
+         <div class="card-buttons">
+           
+            <!-- Кнопка Инфо. В onclick передаем название и текст инфы -->
+            <button class="info-btn" onclick="openStoryInfo('Последний выстрел', 'Дата создания: 2025 год.<br>Автор: Desta.<br>Жанр: Детектив, мистка.<br> Комментарий: Я не знаю под чем я создавала этот рассказ, но слегка добавив воды (спасибо Cloud) я подумала что ладно так уж и быть оставлю')">Информация</button>
+        </div>
+        <a href="poslet_vistrel.html" class="read-btn" style="margin-top: 3%;">Читать</a>
+    </div>
+
+    <!-- Скрипт проверки прочитанного -->
+    <script>
+        // Если в памяти есть метка о прочтении, красим карточку в зеленый
+        if (localStorage.getItem('story_last_shot_read') === 'true') {
+            const story = document.getElementById('story_last_shot');
+            if (story) story.classList.add('read');
+        }
+    </script>
+        <script>
+        // Функция открытия окна с инфой
+        function openStoryInfo(title, infoHtml) {
+            // Ставим заголовок
+            document.getElementById('story-modal-title').innerText = title;
+            
+            // Ставим текст. Используем innerHTML, чтобы работали теги <br> (перенос строки)
+            document.getElementById('story-modal-desc').innerHTML = infoHtml;
+            
+            // Показываем окно
+            document.getElementById('storyModal').style.display = 'block';
+        }
+
+        // Функция закрытия по крестику
+        function closeStoryInfo() {
+            document.getElementById('storyModal').style.display = 'none';
+        }
+
+        // Закрытие окна, если кликнуть мимо него (по темному фону)
+        window.addEventListener('click', function(event) {
+            let modal = document.getElementById('storyModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+      <div id="storyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeStoryInfo()">✕</span>
+            <h2 id="story-modal-title">Название рассказа</h2>
+            <p id="story-modal-desc" style="text-align: center; font-size: 20px; margin-top: 20px;">Информация...</p>
+        </div>
+    </div>
+</body>
+</html>
