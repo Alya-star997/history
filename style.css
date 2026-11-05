@@ -781,3 +781,20 @@ filter: drop-shadow(0 0 15px #ff3333);
     box-sizing: border-box; 
     display: inline-block;
 }
+/* Стили для таблицы с цветами */
+.dialog-table {
+    margin: 20px auto;            /* Центрируем таблицу на странице */
+    text-align: center;           /* Текст внутри таблицы по центру */
+    border-spacing: 15px 10px;    /* 15px отступ по бокам, 10px сверху/снизу */
+    font-size: 20px;
+}
+
+.dialog-table th {
+    font-size: 22px;
+    padding-bottom: 15px;         /* Отступ под заголовком */
+    color: white;                 /* Цвет заголовка */
+}
+
+.dialog-table td {
+    padding: 5px;                 /* Отступ внутри каждой ячейки */
+}
