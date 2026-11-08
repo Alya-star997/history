@@ -21,23 +21,34 @@
        <button class="chapter-btn" onclick="goToPage(7)">Глава 8</button>
        
     </div>
-    <div class="words">
-        <h3>Цвета диалогов</h3>
-        <!-- onclick вызывает функцию перехода на нужную страницу (0 - первая, 1 - вторая и т.д.) -->
-        <button class="dialogue" style="color: red; text-align: center;">Деста</button>
-        <button class="dialogue" style="color: yellow; text-align: center;">Луи</button>
-       <button class="dialogue" style="color: palevioletred; text-align: center;">Вика</button>
-       <button class="dialogue" style="color: rgb(165, 69, 42); text-align: center;">Агата</button>
-       <button class="dialogue" style="color: forestgreen; text-align: center;">Норд</button>
-       <button class="dialogue" style="color: aqua; text-align: center;">Прохор</button> 
-       <button class="dialogue">Левые челы/интрига</button>
-      
+   <!-- Кнопка для открытия/закрытия вкладки -->
+<button id="color-toggle-btn" class="color-toggle-btn">🎨 Цвета</button>
+
+<!-- Твой блок с цветами (добавили id и класс) -->
+<div id="color-panel" class="color-panel hidden">
+    <!-- Тут твоя таблица или список с именами -->
+    <table class="dialog-table">
+        <tr>
+            <th colspan="7">Цвета для диалогов:</th>
+        </tr>
+        <tr>
+            <td style="color: red;">Деста</td>
+            <td style="color: yellow;">Луи</td>
+            <td style="color: palevioletred;">Вика</td>
+            <td style="color: rgb(165, 69, 42);">Агата</td>
+            <td style="color: blue;">Норд</td>
+            <td style="color: aqua;">Прохор</td>
+            <td>Левые челы</td>
+        </tr>
+    </table>
+</div>
        
     </div>
 <div class="reader-container">
     <h1 style="font-family: 'Times New Roman', Times, serif; margin-top: -4%;">Обычная история</h1>
        <h1 style="font-family: 'Times New Roman', Times, serif; font-size: 40px;">Примечание:</h1>
        <p>В рассказе текст написанный <i>Курсивом</i>- обозначает мысли главной героини(Десты)</p>
+       <p>Кнопка "Цвета" открывает каким цветом говорит персонаж. Можно перемещаться на другие страницы по кнопкам в разделе "Главы"</p>
       <table class="dialog-table">
     <tr>
         <th colspan="7">Цвета для диалогов:</th>
@@ -888,6 +899,26 @@
             closeGallery();
         }
     });
+   
+    // Ждем, пока страница полностью загрузится
+    document.addEventListener("DOMContentLoaded", function() {
+        const colorBtn = document.getElementById('color-toggle-btn');
+        const colorPanel = document.getElementById('color-panel');
+
+        // Проверяем, существуют ли они на странице, чтобы не было ошибок
+        if (colorBtn && colorPanel) {
+            colorBtn.addEventListener('click', function() {
+                colorPanel.classList.toggle('show');
+                
+                if (colorPanel.classList.contains('show')) {
+                    colorBtn.innerText = "✕ Закрыть";
+                } else {
+                    colorBtn.innerText = "Цвета";
+                }
+            });
+        }
+    });
+
 </script>
 
 </body>
