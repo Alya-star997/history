@@ -594,7 +594,13 @@ filter: drop-shadow(0 0 15px #ff3333);
     font-family: Arial, sans-serif;
     font-size: 18px;
 }
-
+h4{
+     color: #ff3333;
+    margin: 0 0 10px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
 .chapter-btn {
     background-color: transparent;
     color: white;
@@ -896,4 +902,158 @@ filter: drop-shadow(0 0 15px #ff3333);
 .color-panel .dialog-table {
     margin: 0;
     font-size: 16px; /* Чуть меньше шрифт для мобилки */
+}
+/* --- СТИЛИ ДЛЯ ФОРМЫ ОТЗЫВОВ --- */
+.feedback-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #0a0a0a;
+    border: 2px solid #ff3333;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    font-family: Arial, sans-serif;
+}
+
+.feedback-container h3 {
+    text-align: center;
+    color: #ff3333;
+    text-shadow: 0 0 10px red;
+    font-size: 26px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* --- ЗВЕЗДЫ --- */
+.star-rating {
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse; /* Звезды заполняются справа налево */
+    gap: 10px;
+    font-size: 45px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.star-rating span {
+    color: #333; /* Цвет пустой звезды */
+    transition: color 0.2s, transform 0.2s;
+}
+
+/* Подсветка при наведении и при клике (класс active добавляет JS) */
+.star-rating span:hover,
+.star-rating span:hover ~ span,
+.star-rating span.active,
+.star-rating span.active ~ span {
+    color: #ffcc00; /* Золотой цвет */
+    text-shadow: 0 0 15px #ffcc00;
+}
+
+.star-rating span:hover {
+    transform: scale(1.2); /* Легкое увеличение при наведении */
+}
+
+/* --- ПОЛЯ ВВОДА --- */
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    color: antiquewhite;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-family: inherit;
+    box-sizing: border-box; /* Чтобы padding не растягивал поле */
+    transition: 0.3s;
+}
+
+/* Подсветка поля при клике на него */
+.input-group input:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: #ff3333;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.input-group textarea {
+    resize: vertical; /* Можно менять высоту только вниз */
+}
+
+/* --- КНОПКА --- */
+#submitBtn {
+    width: 100%;
+    padding: 15px;
+    background-color: #ff3333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+#submitBtn:hover {
+    background-color: #cc0000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+}
+
+/* Статус отправки */
+#formStatus {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+/* Обертка для карточек */
+.stories-grid {
+    display: flex !important;         /* Принудительно ставим в ряд */
+    flex-direction: row !important;   /* Запрещаем столбик */
+    flex-wrap: wrap !important;       /* Разрешаем перенос, если не влезают */
+    justify-content: center !important; /* Центрируем */
+    gap: 30px !important;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Сама карточка */
+.story-card {
+    width: 300px !important;          /* Жестко задаем ширину */
+    max-width: 300px !important;
+    display: block !important;
+    box-sizing: border-box;
+    background-color: #0a0a0a;
+    border: 2px solid #ff3333;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Зеленая рамка для прочитанного */
+.story-card.read {
+    border-color: #00ff00 !important; 
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3) !important; 
+}
+
+/* Для телефонов (если экран меньше 768px) */
+@media (max-width: 768px) {
+    .stories-grid {
+        flex-direction: column !important; /* На телефоне падают вниз */
+        align-items: center !important;
+    }
 }

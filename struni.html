@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рассказ "Струны судьбы"</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+    <!-- Боковое меню с главами -->
+    <div class="chapter-sidebar">
+        <h3>Главы</h3>
+        <button class="chapter-btn active" onclick="goToPage(0)">Глава 1</button>
+        <button class="chapter-btn" onclick="goToPage(1)">Глава 2</button>
+        <button class="chapter-btn" onclick="goToPage(2)">Глава 3</button>
+        <button class="chapter-btn" onclick="goToPage(3)">Глава 4</button>
+        <button class="chapter-btn" onclick="goToPage(4)">Глава 5</button>
+        <button class="chapter-btn" onclick="goToPage(5)">Глава 6</button>
+    </div>
+
+    <!-- Кнопка для открытия вкладки цветов -->
+    <button id="color-toggle-btn" class="color-toggle-btn">🎨 Цвета</button>
+
+    <!-- Блок с цветами -->
+    <div id="color-panel" class="color-panel hidden">
+        <table class="dialog-table">
+            <tr>
+                <th colspan="7">Цвета для диалогов:</th>
+            </tr>
+            <tr style="text-align: center;">
+                <td style="color: red;">Деста</td>
+                <td style="color: yellow;">Луи</td>
+                <td style="color: palevioletred;">Вика</td>
+                <td style="color: orange">Аля</td>
+                <td style="color: aqua;">Мик</td>
+                <td>Левые челы</td>
+            </tr>
+        </table>
+    </div>
+       
+    <div class="reader-container">
+        <h1 style="font-family: 'Times New Roman', Times, serif; margin-top: -4%;">Обычная история</h1>
+        <h1 style="font-family: 'Times New Roman', Times, serif; font-size: 40px;">Примечание:</h1>
+        <p>В рассказе текст выделенный <u><b><i>жирным, курсивом и подчеркнутым</i></b></u> - это слова сказанные шопотом. В рассказе будут присутствовать "фрагменты переписки"</p>
+        <p>Кнопка "Цвета" открывает каким цветом говорит персонаж. Можно перемещаться на другие страницы по кнопкам в разделе "Главы"</p>
+        
+        <!-- Таблица цветов (видимая) -->
+        <table class="dialog-table">
+            <tr>
+                <th colspan="7">Цвета для диалогов:</th>
+            </tr>
+            <tr>
+                <td style="color: red;">Деста</td>
+                <td style="color: yellow;">Луи</td>
+                <td style="color: palevioletred;">Вика</td>
+            </tr>
+            <tr>
+                <td style="color: orange"><u>Аля</u></td>
+                <td style="color: aqua;">Мик</td>
+                <th style="font-size: 14px;">Левые челы <p style="font-size: 14px; margin-top: 0; text-align: center;">(либо просто тип интригу сохранить)</p></th>
+            </tr>
+        </table>
+      
+        <!-- ТЕКСТ РАССКАЗА -->
+        <div id="text-content" class="text-content">
+            
+            <!-- СТРАНИЦА 1 -->
+            <div class="story-page">
+                <h2 style="text-align: center;">Глава 1. Тоньше, чем гитарная струна</h2>
+                <p>Осень. Опять придется ходить на учебу. Кабинет, контрольные, самостоятельные, экзамены. Ужас какой. Каждый день как в камере пыток. Радуют лишь некоторые предметы или хобби. В такое время без развлечений как-то тоскливо и худо. </p>
+                <p>Деста сидит на третьей парте третьего ряда, подальше от преподавателя, но не слишком далеко, потому что задние парты уже заняты. Девушка не горела желанием учиться, но получать образование нужно и приходиться трудиться. Да, можно пойти сразу работать, но получать большие деньги можно только с помощью нормального образования.</p>
+                <p>Итак, началась пара. Пришел преподаватель и начал объяснять правила поведения на его дисциплине. Никаких телефонов, болеешь-приносишь справку, опоздаешь-рассказываешь правила, которые он скажет. Ну впрочем надо делать все то, что делают приличные студенты. Радостно, что стипендия пока что выплачивается, пусть и небольшая и до первых экзаменов, а также тешит, что завтра выходные</p>
+                <p>Деста попала в группу со своими «корешами» из школы Луи и Миком. Да что из школы, из садика. Дружба у них долгая и крепкая. В детстве как их матери подружились, так ребята все еще вместе. Не вериться, что их возможно разделить. Ссоры, обиды у них, конечно, были, но не на столько, чтобы бросить дружбу, построенную годами.</p>
+                <p>Эта троица сидела рядом друг с другом. Луи и Мик устроились позади Десты на 4 парте. Дес сидела со скучной одногруппницей. Но на данный момент Десту все устраивало, потому что разговаривать на постороннюю тему на этой паре было запрещено.</p>
+                <p>Высказав все, что касается общих правил, преподаватель начал все-таки вести свою лекцию. Проходит 5, 10, 15 минут. Час, полтора часа. Прозвучал звонок. </p>
+                <p>Деста выдыхает с облегчением, собирает свои вещи и выходит в коридор ждать парней. Те в свою очередь не тормозили и почти так же быстро выскочили из кабинета.</p>
+                <p style="color: yellow;">эх, чувствую год будет интересный. Если, конечно, не отчислиться раньше времени.</p>
+                <p style="color: aqua;">да ты завтра же документы будешь забирать. Ты и в школе не шибко учился, тебя только за уши тянули на тройки.</p>
+                <p style="color: yellow;">главное, что у меня балл высокий и я поступил туда же куда и вы двое.</p>
+                <p style="color: aqua;">ага, высокий, потому что папочка кулачком помахал перед носом директора.</p>
+                <p style="color: yellow;">ой, хватит завидовать ботан. Себе такого позволить не можешь так и молчи.</p>
+                <p>Ребята дошли до кабинета и стояли рядом, показывая свое «уважение» к личным границам преподавателя. Хотя на самом деле им было без разницы. Пока парни спорили на разные темы будь то марки машин или как правильно готовить курицу в гриле, Деста искала подходящие аккорды на свою новую песню.</p>
+                <p style="color: red;"><b><u><i>Вроде нашла, но лучше дома опробовать</i></u></b></p>
+                <p>Спор парней и мысли девушки прервал звонок. Студенты разошлись по кабинетам. Опять знакомство, узнавание правил и все скучные вещи. Так пролетели 4 пары. Число маленькое, но времени прошло достаточно, чтобы вымотаться. </p>
+                <p>Уставшие студенты выбирались из техникума. Деста решила зайти в магазин взять воду, когда парни побежали на остановку. Купив воду, девушка присоединилась к друзьям. Пока она шла парни опять о чем-то спорили, но, когда увидели, как к ним подходит подруга, успокоились.</p>
+                <p style="color: red;">о чем опять спорите?</p>
+                <p style="color: aqua;">как всегда, о том, что этот желторотик не понимает</p>
+                <p style="color: yellow;">ой-ой-ой кто бы говорил, калькулятор</p>
+                <p>Подъехал нужный для ребят автобус. Деста зашла первая и после нее запрыгнули и парни. К удивлению, всю дорогу они и слово не проронили, хотя такое случается редко. Подъезжая к своей остановке, ребята вышли, так же молча, как и ехали. По дороге домой споров тоже не возникало. Ребята разошлись по квартирам. И наконец-то в их общем чате, потихоньку опять начался спор о «ни о чем». Деста поставила группу временно на беззвучку, пока подбирала аккорды и темп песни. Спустя долгое время у нее что-то начало получаться, и она решила, что на сегодня хватит. Зайдя в их группку она была удивлена. Обычно, когда она занимается музыкой парни написывают больше 100 сообщений, но тут даже 10 нету. Прочитав чат, девушка посмотрела на время. Играла она столько же времени, сколько и всегда. Не решив об этом спрашивать, Деста начала смотреть аниме. </p>
+                <p>На следующий день Деста проснулась рановато. Обычно она встает часов в 12, но сейчас на часах 9утра. Спать девушка не хотела, может быть, потому что вчера раньше легла. Встав, она заварила кофе, прихорошилась и пошла прогуляться. Из их троицы рано может проснуться только Мик, которого Деста позвала прогуляться с ней. Как только девушка отправила сообщение Мик сразу же дал положительный ответ. </p>
+                <p>Парочка гуляла в парке, разговаривая о вчерашнем вечере.</p>
+                <p style="color: red;">когда я зашла в чат там было 7 уведомлений всего. Вы приболели или как?</p>
+                <p style="color: aqua;">я нет, я занят был. Маме помогал, потом математику решал и в шахматы играл. А что с этим блондинчиком я не знаю.</p>
+                <p>Прошло 3 часа. Ребята то ходили по набережной, то катались на аттракционах и ели морожено. В чат написал Луи с вопросом об их местоположении. Узнав, где ребята находятся, Луи быстро собрался и побежал к ним. Придя к лавочке на которой сидели Мик и Деста, Луи подарил подруге маленькую коробку конфет, которую он взял с дома.</p>
+                <p style="color: red;">что за повод?</p>
+                <p style="color: yellow;">да так. Решил подарить самой красивой даме в нашей компании, чтобы она не расстраивалась, подарочек в честь начала учебы.</p>
+                <p>Мик сверлил друга взглядом. Несмотря на это, прогулка продолжалась до вечера. Придя домой девушка почти сразу съела конфеты. Заглянула в чат, ни одного сообщения. Странно, сегодня гуляли как всегда: парни спорили, а девушка их слушала. Вечер прошел спокойно, что насторожило девушку. </p>
+                <p>На следующий день Деста репетировала свою песню, то добавляя, то убирая слова. Мик играл в шахматы или помогал родителям по дому. Луи чуть ли не пол дня провел в спорт зале, а оставшуюся половину пытался сочинить стихотворение.</p>
+                
+                <img src="#.png" class="story-img" onclick="openGallery(this)" alt="Иллюстрация 1.1">
+            </div>
+            
+            <!-- СТРАНИЦА 2 -->
+            <div class="story-page">
+                <h2 style="text-align: center;">Глава 2. Во сне</h2>
+            </div>
+            
+            <!-- СТРАНИЦА 3 -->
+            <div class="story-page">
+                <h2 style="text-align: center;">Глава 3. Возлюбленный</h2>
+            </div>
+            
+            <!-- СТРАНИЦА 4 -->
+            <div class="story-page">
+                <h2 style="text-align: center;">Глава 4. Темный магнит</h2>
+            </div>
+            
+            <!-- СТРАНИЦА 5 -->
+            <div class="story-page">
+                <h2 style="text-align: center;">Глава 5. Шлюха в листике клена</h2>
+            </div>
+            
+            <!-- СТРАНИЦА 6 -->
+            <div class="story-page">
+                <h2 style="text-align: center;">Глава 6. Прошлое</h2>
+            </div>
+        </div>
+
+        <!-- Кнопки навигации -->
+        <div class="controls">
+            <button onclick="prevPage()" id="btn-prev">Назад</button>
+            <span id="page-indicator">Страница 1</span>
+            <button onclick="nextPage()" id="btn-next">Вперед</button>
+        </div>
+
+        <!-- Кнопка "Прочитано" -->
+        <button onclick="markAsRead()" class="finish-btn">Отметить как прочитанное</button>
+        
+        <a href="history.html" class="back-link">← Вернуться к списку</a>
+    </div>
+
+    <!-- Галерея -->
+    <div id="imageGallery" class="gallery-modal">
+        <span class="close-gallery" onclick="closeGallery()">✕</span>
+        <button class="gallery-nav prev" onclick="changeImage(-1)">❮</button>
+        <img id="gallery-main-img" src="" alt="Просмотр">
+        <button class="gallery-nav next" onclick="changeImage(1)">❯</button>
+    </div>
+
+    <!-- СКРИПТЫ -->
+    <script>
+        let currentStoryId = 'story_struni'; // <--- ИСПРАВЛЕНО (теперь сохраняет для этого рассказа)
+        let pages = [];
+        let currentPageIndex = 0;
+
+        function initReader() {
+            pages = document.querySelectorAll('.story-page');
+            if (pages.length === 0) return;
+
+            const savedPage = localStorage.getItem(currentStoryId + '_page');
+            if (savedPage !== null) {
+                currentPageIndex = parseInt(savedPage);
+            }
+            if (currentPageIndex >= pages.length) {
+                currentPageIndex = 0;
+            }
+            renderPage(); 
+        }
+
+        function renderPage() {
+            pages.forEach(page => page.style.display = 'none');
+            pages[currentPageIndex].style.display = 'block';
+            
+            const indicator = document.getElementById('page-indicator');
+            if (indicator) indicator.innerText = `Страница ${currentPageIndex + 1} из ${pages.length}`;
+            
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            if (btnPrev) btnPrev.disabled = (currentPageIndex === 0);
+            if (btnNext) btnNext.disabled = (currentPageIndex === pages.length - 1);
+
+            localStorage.setItem(currentStoryId + '_page', currentPageIndex);
+            updateSidebar();
+        }
+
+        function nextPage() {
+            if (currentPageIndex < pages.length - 1) {
+                currentPageIndex++;
+                renderPage();
+                window.scrollTo(0,0);
+            }
+        }
+
+        function prevPage() {
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                renderPage();
+                window.scrollTo(0,0);
+            }
+        }
+
+        function goToPage(pageIndex) {
+            if (pageIndex >= 0 && pageIndex < pages.length) {
+                currentPageIndex = pageIndex;
+                renderPage();
+                window.scrollTo(0,0);
+            }
+        }
+
+        function updateSidebar() {
+            const buttons = document.querySelectorAll('.chapter-btn');
+            buttons.forEach((btn, index) => {
+                if (index === currentPageIndex) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        function markAsRead() {
+            localStorage.setItem(currentStoryId + '_read', 'true');
+            localStorage.setItem(currentStoryId + '_page', 0);
+            window.location.href = 'history.html'; 
+        }
+
+        // Логика галереи
+        let currentGalleryImageIndex = 0;
+        let galleryImages = [];
+
+        function openGallery(element) {
+            galleryImages = Array.from(document.querySelectorAll('.story-img'));
+            currentGalleryImageIndex = galleryImages.indexOf(element);
+            if (currentGalleryImageIndex === -1) currentGalleryImageIndex = 0;
+
+            const modal = document.getElementById('imageGallery');
+            const modalImg = document.getElementById('gallery-main-img');
+            
+            modalImg.src = element.src;
+            modal.style.display = 'flex';
+        }
+
+        function closeGallery() {
+            document.getElementById('imageGallery').style.display = 'none';
+        }
+
+        function changeImage(direction) {
+            if (galleryImages.length === 0) return;
+            currentGalleryImageIndex += direction;
+
+            if (currentGalleryImageIndex >= galleryImages.length) currentGalleryImageIndex = 0;
+            if (currentGalleryImageIndex < 0) currentGalleryImageIndex = galleryImages.length - 1;
+
+            document.getElementById('gallery-main-img').src = galleryImages[currentGalleryImageIndex].src;
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") closeGallery();
+        });
+
+        // Логика панели цветов
+        document.addEventListener("DOMContentLoaded", function() {
+            const colorBtn = document.getElementById('color-toggle-btn');
+            const colorPanel = document.getElementById('color-panel');
+
+            if (colorBtn && colorPanel) {
+                colorBtn.addEventListener('click', function() {
+                    colorPanel.classList.toggle('show');
+                    if (colorPanel.classList.contains('show')) {
+                        colorBtn.innerText = "✕ Закрыть";
+                    } else {
+                        colorBtn.innerText = "🎨 Цвета";
+                    }
+                });
+            }
+            // Запускаем инициализацию читалки
+            initReader();
+        });
+    </script>
+</body>
+</html>
