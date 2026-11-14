@@ -79,7 +79,7 @@ a{
 }
 a:hover{
     color: rgb(255, 0, 0);
-    font-size: 30px;
+    font-size: 28px;
 }
 
 h1 {
@@ -647,9 +647,13 @@ h4{
     }
 }
 /* --- ИЛЛЮСТРАЦИИ В ТЕКСТЕ --- */
+/* --- ИЛЛЮСТРАЦИИ В ТЕКСТЕ --- */
 .story-img {
     display: block;
+    width: 100%;              /* Картинка занимает всю доступную ширину... */
+    max-width: 600px;         /* ...но не больше 600 пикселей (это оптимально для чтения) */
     height: auto;
+    margin: 30px auto;        /* Центрируем картинку по середине и добавляем отступы */
     border-radius: 10px;
     border: 2px solid #ff3333;
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
@@ -1056,4 +1060,226 @@ h4{
         flex-direction: column !important; /* На телефоне падают вниз */
         align-items: center !important;
     }
+}
+/* --- СТИЛИ ДЛЯ ТАБЛИЦЫ-ПЕРЕПИСКИ --- */
+.chat-table {
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto; /* Центрируем таблицу по середине */
+    border-collapse: collapse; /* Убираем двойные рамки */
+    background-color: #0a0a0a; /* Темный фон */
+    border: 2px solid #ff3333; /* Красная внешняя рамка */
+    border-radius: 10px; /* Скругляем углы */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); /* Свечение */
+    overflow: hidden; /* Чтобы углы таблицы были скруглены */
+}
+
+.chat-table td {
+    border: 1px solid #ff3333; /* Тонкие красные линии между ячейками */
+    padding: 15px;
+    vertical-align: top; /* Текст прижимается к верху ячейки */
+}
+
+/* Левая колонка (где фото) */
+.chat-photo {
+    width: 30%; /* Ширина колонки с фото */
+    text-align: center;
+    font-style: italic;
+    color: #888; /* Серый цвет для заглушки */
+    background-color: #111; /* Чуть светлее основного фона */
+}
+
+/* Правая колонка (где текст) */
+.chat-message {
+    width: 70%;
+}
+
+/* Имя персонажа */
+.chat-name {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px currentColor; /* Свечение в цвет имени */
+}
+
+/* Сам текст сообщения */
+.chat-text {
+    font-size: 18px;
+    line-height: 1.5;
+    color: antiquewhite;
+}
+
+/* Для телефонов: если экран узкий, делаем таблицу в один столбец */
+@media (max-width: 600px) {
+    .chat-table, .chat-table tbody, .chat-table tr, .chat-table td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .chat-photo {
+        border-bottom: none; /* Убираем лишнюю линию на телефоне */
+    }
+}
+/* --- НОВЫЕ СТИЛИ ДЛЯ АВАТАРОК В ТАБЛИЦЕ --- */
+
+/* Настройка ячейки с фото */
+.chat-photo {
+    width: 120px; /* Ширина колонки с фото */
+    vertical-align: middle !important; /* Центрируем фото по высоте сообщения */
+    padding: 15px !important;
+    background-color: #0a0a0a; /* Темный фон */
+    text-align: center;
+}
+
+/* Сама фотография */
+.chat-photo img {
+    width: 150px;           /* Размер аватарки (можешь увеличить до 100px) */
+    height: 150px;          /* Высота (должна совпадать с шириной) */
+    object-fit: cover;     /* Чтобы фото не плющилось и не растягивалось */
+    border-radius: 50%;    /* Делает фото круглым */
+    border: 2px solid #ff3333; /* Красная рамка */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); /* Красное неоновое свечение */
+    transition: 0.3s;      /* Плавный эффект */
+}
+
+/* Эффект при наведении на аватарку (чуть увеличивается) */
+.chat-photo img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 1);
+}
+/* --- СТИЛИ ДЛЯ ТЕКСТА ПЕСНИ --- */
+.song-lyrics {
+    max-width: 600px;          /* Ограничиваем ширину, чтобы текст не растягивался */
+    margin: 40px auto;         /* Центрируем блок на странице */
+    padding: 25px 35px;        /* Отступы внутри блока */
+    
+    background-color: #0a0a0a; /* Темный фон (чуть светлее основного) */
+    
+    /* Красивая красная полоса слева */
+    border-left: 4px solid #ff3333; 
+    border-radius: 0 15px 15px 0; /* Скругляем правые углы */
+    
+    /* Легкая тень вокруг */
+    box-shadow: 5px 5px 20px rgba(255, 0, 0, 0.15); 
+    
+    color: #ffcccc;            /* Нежно-розовый цвет текста (чтобы не сливалось с белым) */
+    font-size: 20px;
+    font-style: italic;        /* Курсив для текста песни */
+    line-height: 1.8;          /* Увеличиваем межстрочный интервал (легче читать) */
+    text-align: center;        /* Выравниваем по центру */
+    position: relative;
+}
+
+/* Добавляем большую декоративную кавычку на фоне */
+.song-lyrics::before {
+    content: '“';
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-size: 100px;
+    color: rgba(255, 51, 51, 0.1); /* Прозрачная красная кавычка */
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+/* Адаптация для телефонов */
+@media (max-width: 600px) {
+    .song-lyrics {
+        margin: 20px 10px;     /* Уменьшаем отступы на телефоне */
+        padding: 15px 20px;
+        font-size: 18px;       /* Чуть уменьшаем шрифт */
+    }
+}
+/* --- КАРТОЧКА В ТЕКСТЕ --- */
+.photo-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #0a0a0a;
+    border: 2px solid #ff3333;
+    border-radius: 10px;
+    padding: 15px 30px;
+    margin: 20px auto;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    transition: 0.3s;
+    text-align: center;
+    width: fit-content;
+}
+
+.photo-card:hover {
+    background-color: #ff3333;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+    transform: translateY(-3px);
+}
+
+.camera-icon {
+    font-size: 24px;
+}
+
+/* --- ОКНО ГАЛЕРЕИ ВИКИ --- */
+.custom-gallery-modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 5000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Темный фон */
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Если фото много, можно будет прокручивать */
+}
+
+.gallery-title {
+    color: #ff3333;
+    text-shadow: 0 0 10px red;
+    font-family: Arial, sans-serif;
+    margin-bottom: 30px;
+}
+
+/* Кнопка закрытия */
+.close-gallery-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #ff3333;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-gallery-btn:hover {
+    color: white;
+    text-shadow: 0 0 15px red;
+}
+
+/* Сетка для фотографий Вики */
+.vika-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Автоматическая сетка */
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.vika-grid img {
+    width: 100%;
+    height: auto;
+    border: 2px solid #ff3333;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+    transition: 0.3s;
+}
+
+.vika-grid img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.9);
 }
