@@ -1,5 +1,43 @@
+.theme-toggle-btn {
+    background-color: var(--bg-color); 
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    padding: 10px;
+    margin: 10px 20px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.theme-toggle-btn:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+/* Цвета для ТЕМНОЙ темы (по умолчанию) */
+:root {
+    --bg-color: #000000;
+    --text-color: #faebd7; /* antiquewhite */
+    --accent-color: #ff3333; /* Красный */
+    --card-bg: #0a0a0a;
+    --border-color: #ff3333;
+}
+
+/* Цвета для СВЕТЛОЙ темы */
+body.light-theme {
+    --bg-color: #f4f4f4;
+    --text-color: #222222; /* Должен быть темным! */
+    --accent-color: #cc0000; 
+    --card-bg: #ffffff;
+    --border-color: #cc0000;
+}
+
+/* Применяем цвета */
 body {
-    background-color: black;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход */
     overflow-x: hidden;
 }
 h2{
@@ -73,6 +111,7 @@ h2{
     }
 }
 a{
+      color: var(--accent-color);
     color: #ff4747;
     font-size: 25px;
     text-shadow: 3px 3px 5px red;
@@ -136,15 +175,15 @@ filter: drop-shadow(0 0 10px rgb(163, 4, 4));
     height: auto;
     max-height: 100%;
 }
-p{
+p {
     margin-right: 0;
     text-indent: 40px;
     text-align: center;
     margin-left: 5%;
-    color: antiquewhite;
+    /* БЫЛО: color: antiquewhite; */
+    color: var(--text-color); /* СТАЛО */
     font-size: 20px;
-   font-family: 'Times New Roman', Times, serif;
-
+    font-family: 'Times New Roman', Times, serif;
 }
 #menu-toggle {
     display: none; 
@@ -172,44 +211,56 @@ p{
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px;         /* Ширина меню */
-    height: 100vh;        /* На всю высоту экрана */
-    background-color: #0a0a0a; /* Почти черный фон */
-    border-right: 2px solid #ff3333; /* Красная полоса справа */
-    box-shadow: 5px 0 20px rgba(255, 0, 0, 0.3); /* Красная тень */
-     display: flex;
-    flex-direction: column; /* Ссылки друг под другом */
-    padding-top: 80px;    /* Отступ сверху, чтобы не мешать крестику */
-    gap: 20px;            /* Расстояние между ссылками */
+    width: 250px;         
+    height: 100vh;        
     
-    /* МАГИЯ: Изначально меню сдвинуто влево за экран на 100% своей ширины */
+    /* ИЗМЕНЕНО: Привязываем к переменным */
+    background-color: var(--card-bg); 
+    border-right: 2px solid var(--border-color); 
+    
+    /* Немного уменьшим красную тень, чтобы на белом фоне она не слепила */
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.2); 
+    
+    display: flex;
+    flex-direction: column; 
+    padding-top: 80px;    
+    gap: 20px;            
+    
     transform: translateX(-100%);
-    transition: transform 0.4s ease-in-out; /* Плавная анимация выезда */
-    z-index: 1000;         /* Чуть ниже кнопки-гамбургера */
+    transition: transform 0.4s ease-in-out, background-color 0.3s; /* Добавили плавность цвета */
+    z-index: 1000;         
 }
 /* Ссылки внутри меню */
+/* Ссылки внутри меню */
 .sidebar a {
-    color: white;
+    /* Используем переменную цвета текста */
+    color: var(--text-color); 
     text-decoration: none;
     font-size: 20px;
     font-family: Arial, sans-serif;
     padding: 10px 30px;
     transition: 0.3s;
-}
-/* Подсветка ссылок при наведении */
-.sidebar a:hover {
-    color: #ff3333;
-    text-shadow: 0 0 8px red;
-    padding-left: 40px; /* Текст чуть сдвигается вправо при наведении */
+    /* Убираем постоянное свечение, если оно было */
+    text-shadow: none; 
 }
 
+/* Подсветка ссылок при наведении */
+.sidebar a:hover {
+    color: var(--accent-color); /* Становится красным при наведении */
+    
+    /* Свечение делаем только при наведении, и оно теперь зависит от темы */
+    /* В темной теме будет яркое, в светлой - более приглушенное */
+    text-shadow: 0 0 8px var(--accent-color); 
+    
+    padding-left: 40px; 
+}
 /* Кнопка закрытия (крестик) внутри меню */
 .close-btn {
     position: absolute;
     top: 20px;
     right: 20px;
     font-size: 25px;
-    color: #ff3333;
+    color: var(--accent-color); /* ИЗМЕНЕНО: Крестик теперь меняет цвет */
     cursor: pointer;
 }
 /* Если чекбокс с id="menu-toggle" нажат (checked), то соседний .sidebar выезжает на 0 */
@@ -499,6 +550,13 @@ filter: drop-shadow(0 0 15px #ff3333);
     width: 300px;
     color: white;
     transition: 0.3s;
+    
+    /* ... */
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    /* ... */
+
 }
 
 /* Этот класс мы будем добавлять через JS, если рассказ прочитан */
@@ -556,7 +614,20 @@ filter: drop-shadow(0 0 15px #ff3333);
     display: block;
     width: 100%;
     padding: 15px;
-    background-color: #00aa00; /* Зеленая кнопка */
+    background-color: #aa1c00; /* Зеленая кнопка */
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.finish-btn:hover {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #dd2a06; /* Зеленая кнопка */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
     color: white;
     border: none;
     font-size: 18px;
@@ -912,17 +983,20 @@ h4{
     max-width: 500px;
     margin: 40px auto;
     padding: 30px;
-    background-color: #0a0a0a;
-    border: 2px solid #ff3333;
+    /* Используем переменные */
+    background-color: var(--card-bg); 
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
     font-family: Arial, sans-serif;
+    transition: 0.3s; /* Плавная смена темы */
 }
 
 .feedback-container h3 {
     text-align: center;
-    color: #ff3333;
-    text-shadow: 0 0 10px red;
+    color: var(--accent-color); /* Красный цвет, который меняется в зависимости от темы */
+    text-shadow: 0 0 10px var(--accent-color);
     font-size: 26px;
     margin-top: 0;
     margin-bottom: 20px;
@@ -940,16 +1014,16 @@ h4{
 }
 
 .star-rating span {
-    color: #333; /* Цвет пустой звезды */
+    color: #888; /* Серый цвет для пустых звезд подходит и для светлой, и для темной темы */
     transition: color 0.2s, transform 0.2s;
 }
 
-/* Подсветка при наведении и при клике (класс active добавляет JS) */
+/* Золотой цвет для выбранных звезд (оставляем как есть) */
 .star-rating span:hover,
 .star-rating span:hover ~ span,
 .star-rating span.active,
 .star-rating span.active ~ span {
-    color: #ffcc00; /* Золотой цвет */
+    color: #ffcc00; 
     text-shadow: 0 0 15px #ffcc00;
 }
 
@@ -965,7 +1039,8 @@ h4{
 
 .input-group label {
     display: block;
-    color: antiquewhite;
+    /* Текст подписи меняет цвет */
+    color: var(--text-color); 
     font-size: 16px;
     margin-bottom: 8px;
 }
@@ -974,13 +1049,14 @@ h4{
 .input-group textarea {
     width: 100%;
     padding: 12px;
-    background-color: #1a1a1a;
-    border: 2px solid #333;
+    /* В светлой теме фон станет светлым, в темной - темным */
+    background-color: var(--bg-color); 
+    color: var(--text-color);
+    border: 2px solid #555;
     border-radius: 8px;
-    color: white;
     font-size: 16px;
     font-family: inherit;
-    box-sizing: border-box; /* Чтобы padding не растягивал поле */
+    box-sizing: border-box; 
     transition: 0.3s;
 }
 
@@ -988,8 +1064,8 @@ h4{
 .input-group input:focus,
 .input-group textarea:focus {
     outline: none;
-    border-color: #ff3333;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
 }
 
 .input-group textarea {
@@ -1000,7 +1076,7 @@ h4{
 #submitBtn {
     width: 100%;
     padding: 15px;
-    background-color: #ff3333;
+    background-color: var(--accent-color);
     color: white;
     border: none;
     border-radius: 8px;
@@ -1283,3 +1359,231 @@ h4{
     transform: scale(1.03);
     box-shadow: 0 0 25px rgba(255, 0, 0, 0.9);
 }
+/* ========================================= */
+/* ГЛОБАЛЬНОЕ ИСПРАВЛЕНИЕ ЦВЕТОВ ДЛЯ ТЕМ */
+/* ========================================= */
+
+/* 1. Основной текст, заголовки и параграфы */
+/* 1. Основной текст, заголовки и параграфы */
+h1, h2, h3, h4, p, label, span, .white-text {
+    /* Убрали !important, чтобы цвета из HTML снова заработали */
+    color: var(--text-color); 
+}
+
+/* Исключение для красных заголовков (чтобы они оставались красными в любой теме) */
+h1, .cards-title, .chapter-sidebar h3 {
+    color: var(--accent-color) !important;
+}
+
+/* 2. Карточки (в рассказах и персонажах) */
+.story-card, .card {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+.story-card p, .card h3 {
+    color: var(--text-color) !important;
+}
+
+/* 3. Модальные окна (всплывающие окна с инфой) */
+.modal-content {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+#modal-title {
+    color: var(--accent-color) !important;
+}
+
+#modal-desc {
+    color: var(--text-color) !important;
+}
+
+/* 4. Таблицы (цвета диалогов и переписки) */
+.dialog-table th {
+    color: var(--accent-color) !important; /* Заголовки таблиц всегда красные */
+}
+
+/* --- ФИКС ПАНЕЛИ ЦВЕТОВ --- */
+.color-panel {
+    /* Панель теперь будет менять фон (белый в светлой теме, черный в темной) */
+    background-color: var(--card-bg) !important;
+    border: 2px solid var(--border-color) !important;
+}
+
+.color-panel .dialog-table th {
+    color: var(--accent-color) !important;
+}
+
+/* Возвращаем цвета персонажам, которые заданы прямо в HTML (красный, желтый и т.д.) */
+.dialog-table td {
+    color: inherit; 
+}
+
+/* А для тех, у кого нет своего цвета (как "Левые чтолы"), делаем цвет текста темы */
+.color-panel .dialog-table td:not([style*="color"]) {
+    color: var(--text-color) !important;
+}
+
+/* Текст в переписке (чат) тоже должен меняться */
+.chat-text {
+    color: var(--text-color) !important;
+}
+.chat-name {
+    /* Оставляем цвета персонажей, они заданы инлайн */
+}
+
+/* 5. Кнопки (Информация, Назад, Вперед и т.д.) */
+.info-btn, .chapter-btn, .controls button {
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+    background-color: transparent;
+}
+
+.info-btn:hover, .chapter-btn:hover, .controls button:not(:disabled):hover {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+}
+
+/* Кнопка "Сменить тему" в меню */
+.theme-toggle-btn {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+.theme-toggle-btn:hover {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+}
+
+/* 6. Кнопка "Цвета" */
+.color-toggle-btn {
+    background-color: var(--card-bg) !important;
+    color: var(--accent-color) !important;
+    border-color: var(--border-color) !important;
+}
+.color-toggle-btn:hover {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+}
+
+/* 7. Форма отзывов (поля ввода) */
+.input-group input, .input-group textarea {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* 8. Текст в карточках (Последний выстрел / Струны судьбы) */
+.story-card .read-btn {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+}
+
+/* 9. Меню (Сайдбар) */
+.sidebar {
+    background-color: var(--card-bg) !important;
+    border-right-color: var(--border-color) !important;
+}
+.sidebar a {
+    color: var(--text-color) !important;
+    text-shadow: none !important; /* Убираем размытие */
+}
+.sidebar a:hover {
+    color: var(--accent-color) !important;
+    text-shadow: 0 0 8px var(--accent-color) !important;
+}
+/* ФИКС ДЛЯ МЕНЮ ГЛАВ СПРАВА */
+.chapter-sidebar {
+    background-color: var(--card-bg) !important;
+    border: 2px solid var(--border-color) !important;
+}
+
+.chapter-sidebar h3 {
+    color: var(--accent-color) !important;
+}
+
+.chapter-btn {
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* Активная глава (чтобы текст был виден на красном фоне) */
+.chapter-btn.active {
+    background-color: var(--accent-color) !important;
+    color: white !important; 
+    border-color: var(--accent-color) !important;
+}
+
+/* При наведении */
+.chapter-btn:hover {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+}
+/* ========================================= */
+/* ФИКС ДЛЯ ТЕКСТА ЛУИ (И ДРУГИХ ЖЕЛТЫХ ТЕКСТОВ) */
+/* ========================================= */
+
+/* Находим любые элементы, у которых в style прописан желтый цвет */
+[style*="color: yellow;"], 
+[style*="color: yellow "] {
+    /* Добавляем плотную черную тень, чтобы текст читался на ЛЮБОМ фоне */
+    text-shadow: 
+        1px 1px 0px #000, 
+       -1px -1px 0px #000,  
+        1px -1px 0px #000,
+       -1px 1px 0px #000,
+        0 0 5px #000; /* Легкое черное свечение вокруг */
+    
+    /* Делаем шрифт чуть жирнее для лучшей читаемости */
+    font-weight: bold; 
+}
+[style*="color: aqua;"], 
+[style*="color: aqua "] {
+    /* Добавляем плотную черную тень, чтобы текст читался на ЛЮБОМ фоне */
+    text-shadow: 
+        1px 1px 0px #000, 
+       -1px -1px 0px #000,  
+        1px -1px 0px #000,
+       -1px 1px 0px #000,
+        0 0 5px #000; /* Легкое черное свечение вокруг */
+    
+    /* Делаем шрифт чуть жирнее для лучшей читаемости */
+    font-weight: bold; 
+}
+
+        /* Временные стили для кабинета (в тон сайту) */
+        .account-container {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 20px;
+            color: var(--text-color);
+        }
+        .auth-box, .user-box, .admin-box {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+        }
+        .hidden { display: none !important; }
+        
+        /* Стили чата */
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .msg { margin-bottom: 10px; padding: 10px; border-radius: 10px; max-width: 80%; }
+        .msg.user { background: #333; margin-left: auto; text-align: right; }
+        .msg.admin { background: var(--accent-color); color: white; margin-right: auto; }
+        
+        input, button { padding: 10px; border-radius: 5px; font-family: inherit; }
+        input { width: 100%; box-sizing: border-box; margin-bottom: 10px; background: #111; color: white; border: 1px solid #ff3333; }
+        button { background: #ff3333; color: white; border: none; cursor: pointer; font-weight: bold; }
+        button:hover { background: #cc0000; }
+  

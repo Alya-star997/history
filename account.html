@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- СТИЛИ ЛИЧНОГО КАБИНЕТА --- */
+        :root {
+            --neon-red: #ff3333;
+            --dark-bg: #000000;
+            --card-bg: #0a0a0a;
+            --text-main: #faebd7;
+            --text-muted: #888888;
+            --border-color: #222;
+        }
+
+        .profile-layout {
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 100px auto 50px auto;
+            padding: 0 20px;
+            font-family: Arial, sans-serif;
+            color: var(--text-main);
+        }
+
+        .profile-sidebar {
+            width: 350px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.1);
+        }
+
+        .profile-header-bg {
+            height: 100px;
+            background: linear-gradient(135deg, #ff3333, #880000);
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-avatar {
+            width: 90px;
+            height: 90px;
+            background-color: #000;
+            border: 4px solid var(--card-bg);
+            border-radius: 50%;
+            position: absolute;
+            bottom: -45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--neon-red);
+            text-shadow: 0 0 10px var(--neon-red);
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+        }
+
+        .profile-body {
+            padding: 60px 20px 20px 20px;
+            text-align: center;
+        }
+
+        .profile-name {
+            font-family: 'Times New Roman', serif;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 0 5px 0;
+            color: var(--neon-red);
+        }
+
+        .profile-phone {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .profile-stats {
+            background: rgba(255, 51, 51, 0.1);
+            border: 1px solid rgba(255, 51, 51, 0.3);
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            color: #ffaaaa;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn-profile {
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .btn-admin {
+            background: var(--neon-red);
+            color: white;
+            border: none;
+            box-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+        }
+        
+        .btn-admin:hover { background: #cc0000; }
+
+        .btn-logout {
+            background: transparent;
+            color: var(--neon-red);
+            border: 1px solid var(--neon-red);
+        }
+        
+        .btn-logout:hover { background: rgba(255, 51, 51, 0.1); }
+
+        .settings-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .settings-card h3 {
+            font-family: 'Times New Roman', serif;
+            margin-top: 0;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--neon-red);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .settings-card label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 5px;
+            color: var(--text-muted);
+        }
+
+        .settings-card input {
+            width: 100%;
+            padding: 10px;
+            background: #111;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .profile-main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .main-block {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .main-block h2 {
+            font-family: 'Times New Roman', serif;
+            margin-top: 0;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--neon-red);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        .empty-text {
+            color: var(--text-muted);
+            text-align: center;
+            font-size: 15px;
+            margin: 20px 0;
+        }
+
+        .read-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .read-list li {
+            padding: 10px;
+            border-bottom: 1px solid #222;
+            color: #00ff00;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .read-list li:last-child { border-bottom: none; }
+
+        .auth-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+        
+        .auth-card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--neon-red);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            box-shadow: 0 0 25px rgba(255, 51, 51, 0.3);
+        }
+
+        .auth-card h2 {
+            text-align: center;
+            font-family: 'Times New Roman', serif;
+            color: var(--text-main);
+            margin-top: 0;
+        }
+
+        .auth-tabs {
+            display: flex;
+            background: #111;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .auth-tab.active {
+            background: var(--neon-red);
+            color: white;
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: white;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--neon-red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .hidden { display: none !important; }
+
+        @media (max-width: 900px) {
+            .profile-layout {
+                flex-direction: column;
+                margin-top: 60px;
+            }
+            .profile-sidebar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Меню -->
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="menu-btn">☰</label>
+    <nav class="sidebar">
+        <label for="menu-toggle" class="close-btn">✕</label>
+        <a href="index.html">Главная</a>
+        <a href="history.html">Рассказы</a>
+        <a href="personaji.html">Персонажи</a>
+        <a href="obomne.html">Обо мне</a>
+        <a href="account.html" style="color: #ff3333; font-weight: bold;">👤 Личный кабинет</a>
+    </nav>
+
+    <!-- ЭКРАН ВХОДА -->
+    <div class="auth-wrapper" id="authScreen">
+        <div class="auth-card">
+            <h2>Добро пожаловать</h2>
+            <div class="auth-tabs">
+                <div class="auth-tab active" onclick="switchTab('login')">Вход</div>
+                <div class="auth-tab" onclick="switchTab('register')">Регистрация</div>
+            </div>
+            
+            <input type="text" id="authPhone" class="auth-input" placeholder="Телефон или логин">
+            <input type="password" id="authPass" class="auth-input" placeholder="Пароль (мин. 6 символов)">
+            
+            <button type="button" class="auth-btn" id="submitBtn" onclick="handleAuth()">Войти</button>
+            <p id="authError" style="color: var(--neon-red); text-align: center; margin-top: 15px; font-size: 14px;"></p>
+        </div>
+    </div>
+
+    <!-- ЛИЧНЫЙ КАБИНЕТ -->
+    <div class="profile-layout hidden" id="profileScreen">
+        <!-- ЛЕВАЯ КОЛОНКА -->
+        <div class="profile-sidebar">
+            <div class="profile-card">
+                <div class="profile-header-bg">
+                    <div class="profile-avatar" id="avatarLetter">D</div>
+                </div>
+                <div class="profile-body">
+                    <h2 class="profile-name" id="displayName">Пользователь</h2>
+                    <div class="profile-phone" id="displayPhone">+7 (000) 000-00-00</div>
+                    
+                    <div class="profile-stats">
+                        Прочитано рассказов: <b id="statsReadCount">0</b>
+                    </div>
+
+                    <div class="profile-actions">
+                        <button type="button" class="btn-profile btn-admin hidden" id="btnGoToAdmin" onclick="openAdminPanel()">Админка</button>
+                        <button type="button" class="btn-profile btn-logout" onclick="logout()">Выйти</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <h3>Настройки</h3>
+                <label>Имя</label>
+                <input type="text" id="settingsName" placeholder="Ваше имя">
+                <label>Новый пароль (можно оставить пустым)</label>
+                <input type="password" placeholder="••••••••">
+            </div>
+        </div>
+
+        <!-- ПРАВАЯ КОЛОНКА -->
+        <div class="profile-main">
+            <div class="main-block">
+                <h2>Прочитанные рассказы</h2>
+                <ul class="read-list" id="readStoriesList">
+                </ul>
+            </div>
+
+            <div class="main-block">
+                <h2>Мои сообщения автору</h2>
+                <p class="empty-text">Здесь будут ваши сообщения, отправленные через форму.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="account.js"></script>
+</body>
+</html>
