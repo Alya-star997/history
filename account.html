@@ -1,119 +1,139 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Личный кабинет</title><link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Личный кабинет</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     :root{--profile-red:#ff3333;--profile-muted:#888;--profile-line:rgba(255,51,51,.28)}
     body.light-theme{--profile-muted:#806d69;--profile-line:rgba(174,35,35,.22)}
+
     .account-wrap{max-width:1180px;margin:90px auto 55px;padding:0 22px;color:var(--text-color);font-family:Arial,sans-serif}
     .account-layout{display:grid;grid-template-columns:310px minmax(0,1fr);gap:24px;align-items:start}
     .account-card,.account-panel{background:var(--card-bg);border:1px solid var(--profile-line);border-radius:16px;box-shadow:0 8px 28px rgba(0,0,0,.12)}
-    .account-profile{overflow:hidden;text-align:center}.account-cover{height:105px;background:linear-gradient(135deg,#ff4545,#790000);position:relative}
-    .account-avatar{position:absolute;left:50%;bottom:-42px;transform:translateX(-50%);width:84px;height:84px;border-radius:50%;display:grid;place-items:center;background:var(--card-bg);border:4px solid var(--card-bg);outline:2px solid var(--profile-red);font:bold 34px Georgia,serif;color:var(--profile-red)}
-    .account-profile-body{padding:55px 20px 22px}.account-name{font: bold 25px Georgia,serif;color:var(--accent-color);margin:0 0 7px}.account-login{font-size:13px;color:var(--profile-muted);margin-bottom:18px;overflow-wrap:anywhere}
-    .account-actions{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}.account-btn{border:1px solid var(--accent-color);border-radius:8px;padding:10px 15px;font-weight:bold;cursor:pointer;background:var(--accent-color);color:white}.account-btn.secondary{background:transparent;color:var(--accent-color)}
-    .account-panel{padding:24px;margin-bottom:20px}.account-panel h2{font: bold 23px Georgia,serif;color:var(--accent-color);margin:0 0 18px;padding-bottom:10px;border-bottom:2px solid var(--accent-color);display:inline-block}
-    .account-tabs{display:flex;gap:8px;border-bottom:1px solid var(--profile-line);margin-bottom:18px;flex-wrap:wrap}.account-tab{border:0;background:none;color:var(--profile-muted);padding:11px 15px;font-weight:bold;font-size:15px;cursor:pointer;border-bottom:2px solid transparent}.account-tab.active{color:var(--accent-color);border-color:var(--accent-color)}
-    .story-row,.achievement-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 4px;border-bottom:1px solid var(--profile-line)}.story-row:last-child,.achievement-row:last-child{border-bottom:0}.story-title{font-weight:bold}.story-status{font-size:12px;color:#258a55;white-space:nowrap}.empty-state{color:var(--profile-muted);text-align:center;padding:24px 8px;line-height:1.6}
-    .account-count{border:1px solid var(--profile-line);background:rgba(255,51,51,.07);border-radius:10px;padding:12px 14px;color:var(--profile-muted);font-size:13px;margin-top:15px}.account-count strong{color:var(--accent-color);font-size:20px}
-    .auth-area{min-height:70vh;display:grid;place-items:center}.auth-card{width:min(100%,410px);padding:28px;background:var(--card-bg);border:1px solid var(--accent-color);border-radius:16px;box-shadow:0 0 25px rgba(255,51,51,.13)}.auth-card h1{text-align:center;font: bold 25px Georgia,serif;color:var(--accent-color);margin:0 0 20px}.auth-tabs{display:flex;background:rgba(128,128,128,.12);border-radius:9px;padding:4px;margin-bottom:18px}.auth-tab{flex:1;padding:10px;border:0;border-radius:7px;background:transparent;color:var(--text-color);cursor:pointer;font-weight:bold}.auth-tab.active{background:var(--accent-color);color:#fff}.auth-input{width:100%;box-sizing:border-box;padding:12px 13px;margin-bottom:13px;border:1px solid var(--profile-line);border-radius:8px;background:var(--bg-color);color:var(--text-color);font-size:15px}.auth-submit{width:100%;padding:12px;border:0;border-radius:8px;background:var(--accent-color);color:white;font-weight:bold;font-size:15px;cursor:pointer}.auth-error{min-height:18px;color:var(--accent-color);font-size:13px;text-align:center;margin:13px 0 0}.admin-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.admin-stat{padding:17px;border-radius:11px;border:1px solid var(--profile-line);background:rgba(255,51,51,.055)}.admin-value{font-size:30px;font-weight:bold;color:var(--accent-color);margin-bottom:5px}.admin-label{font-size:13px;color:var(--profile-muted);line-height:1.4}.admin-note{font-size:12px;color:var(--profile-muted);line-height:1.5;margin:15px 0 0}
+    .account-profile{overflow:hidden;text-align:center}
+    .account-cover{height:105px;background:linear-gradient(135deg,#ff4545,#790000);position:relative}
+
+    .account-avatar{position:absolute;left:50%;bottom:-42px;transform:translateX(-50%);width:84px;height:84px;border-radius:50%;display:grid;place-items:center;background:var(--card-bg);border:4px solid var(--card-bg);outline:2px solid var(--profile-red);cursor:pointer}
+    .account-avatar .avatar-letter{font:bold 34px Georgia,serif;color:var(--profile-red)}
+    .account-avatar .plus-btn{position:absolute;right:-4px;bottom:-4px;width:26px;height:26px;border-radius:50%;background:var(--accent-color);color:#fff;font-size:17px;font-weight:bold;display:flex;align-items:center;justify-content:center;border:2px solid var(--card-bg);z-index:3;pointer-events:none}
+    .account-avatar #avatar-preview{display:none;width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;top:0;left:0;z-index:2}
+    .account-avatar.has-photo #avatar-preview{display:block}
+    .account-avatar.has-photo .avatar-letter{display:none}
+    .account-avatar.has-photo .plus-btn{display:none}
+
+    .account-profile-body{padding:55px 20px 22px}
+    .account-name{font:bold 25px Georgia,serif;color:var(--accent-color);margin:0 0 7px}
+    .account-login{font-size:13px;color:var(--profile-muted);margin-bottom:18px;overflow-wrap:anywhere}
+    .account-actions{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+    .account-btn{border:1px solid var(--accent-color);border-radius:8px;padding:10px 15px;font-weight:bold;cursor:pointer;background:var(--accent-color);color:white}
+    .account-btn.secondary{background:transparent;color:var(--accent-color)}
+
+    .account-panel{padding:24px;margin-bottom:20px}
+    .account-panel h2{font:bold 23px Georgia,serif;color:var(--accent-color);margin:0 0 18px;padding-bottom:10px;border-bottom:2px solid var(--accent-color);display:inline-block}
+    .account-tabs{display:flex;gap:8px;border-bottom:1px solid var(--profile-line);margin-bottom:18px;flex-wrap:wrap}
+    .account-tab{border:0;background:none;color:var(--profile-muted);padding:11px 15px;font-weight:bold;font-size:15px;cursor:pointer;border-bottom:2px solid transparent}
+    .account-tab.active{color:var(--accent-color);border-color:var(--accent-color)}
+
+    .story-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 4px;border-bottom:1px solid var(--profile-line)}
+    .story-row:last-child{border-bottom:0}
+    .story-title{font-weight:bold}
+    .story-status{font-size:12px;color:#258a55;white-space:nowrap}
+    .empty-state{color:var(--profile-muted);text-align:center;padding:24px 8px;line-height:1.6}
+    .account-count{border:1px solid var(--profile-line);background:rgba(255,51,51,.07);border-radius:10px;padding:12px 14px;color:var(--profile-muted);font-size:13px;margin-top:15px}
+    .account-count strong{color:var(--accent-color);font-size:20px}
+
+    .admin-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+    .admin-stat{padding:17px;border-radius:11px;border:1px solid var(--profile-line);background:rgba(255,51,51,.055)}
+    .admin-value{font-size:30px;font-weight:bold;color:var(--accent-color);margin-bottom:5px}
+    .admin-label{font-size:13px;color:var(--profile-muted);line-height:1.4}
+
     @media(max-width:800px){.account-layout{grid-template-columns:1fr}.account-wrap{margin-top:65px}.admin-grid{grid-template-columns:1fr 1fr}}
     @media(max-width:430px){.admin-grid{grid-template-columns:1fr}.account-panel{padding:18px}.story-row{align-items:flex-start}}
   </style>
+
+  <!-- Быстрая проверка: не вошёл — на форму входа -->
+  <script>
+    if (!localStorage.getItem('user_role') || !localStorage.getItem('user_phone')) {
+      location.replace('login.html');
+    }
+  </script>
 </head>
 <body>
-  <input type="checkbox" id="menu-toggle"><label for="menu-toggle" class="menu-btn">☰</label>
+  <input type="checkbox" id="menu-toggle">
+  <label for="menu-toggle" class="menu-btn">☰</label>
   <nav class="sidebar">
     <label for="menu-toggle" class="close-btn">✕</label>
     <a href="index.html">Главная</a>
     <a href="history.html">Рассказы</a>
     <a href="personaji.html">Персонажи</a>
     <a href="obomne.html">Обо мне</a>
-    <a href="account.html" style="color:#ff3333;font-weight:bold">👤 Личный кабинет</a>
-    <label for="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()" href="#" onclick="alert('Вы уже находитесь тут'); return false;">🌓 Сменить тему</label>
+    <a href="account.html" style="color:var(--accent-color) !important;font-weight:bold">👤 Личный кабинет</a>
+    <button type="button" class="theme-toggle-btn" onclick="toggleTheme()" style="font-family:inherit;font-size:inherit;">🌓 Сменить тему</button>
   </nav>
-  <main class="account-wrap">
-    <section id="authScreen" class="auth-area"><div class="auth-card">
-      <h1>Личный кабинет</h1>
-      <div class="auth-tabs">
-        <button class="auth-tab active" id="loginTab" type="button" onclick="setAuthMode('login')">Вход</button>
-        <button class="auth-tab" id="registerTab" type="button" onclick="setAuthMode('register')">Регистрация</button>
-      </div>
-      <input class="auth-input" id="authPhone" type="text" autocomplete="username" placeholder="Логин">
-      <input class="auth-input" id="authPass" type="password" autocomplete="current-password" placeholder="Пароль (от 6 символов)">
-      <button class="auth-submit" id="authSubmit" type="button" onclick="handleAuth()">Войти</button><p class="auth-error" id="authError" aria-live="polite"></p>
-    </div>
-  </section>
-          <section id="profileScreen" class="account-layout" hidden>
-        <!-- ЛЕВАЯ КОЛОНКА (Профиль) -->
-        <aside>
-          <div class="account-card account-profile">
-            <div class="account-cover">
-              
-              <!-- Аватарка -->
-              <div class="account-avatar" id="avatarContainer">
-                <!-- Картинка (скрыта по умолчанию) -->
-                <img id="avatar-preview" src="" alt="" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; position: absolute; top: 0; left: 0; z-index: 2;">
-                
-                <!-- Буква (показывается, пока нет фото) -->
-                
-                
-                <!-- Кнопка плюс -->
-                <label for="file-input" class="plus-btn" title="Загрузить фото">+</label>
-                
-                <!-- Скрытый инпут -->
-                <input type="file" id="file-input" accept="image/*" style="display: none;">
-              </div>
-              
-            </div>
-            
-            <div class="account-profile-body">
-              <h2 class="account-name" id="displayName">👑 Администратор</h2>
-              <div class="account-login" id="displayLogin">DestaAdmin</div>
-              <div class="account-actions">
-                <button class="account-btn" id="btnGoToAdmin" type="button" onclick="showAdmin()">Админ-панель</button>
-                <button class="account-btn secondary" type="button" onclick="logout()">Выйти</button>
-              </div>
-              <div class="account-count">Прочитано рассказов: <strong id="statsReadCount">2</strong></div>
-            </div>
-          </div>
-        </aside>
 
-        <!-- ПРАВАЯ КОЛОНКА (Библиотека) -->
-        <div>
-          <div class="account-panel">
-            <div class="account-tabs">
-              <button class="account-tab active" id="storiesTab" onclick="switchTab('stories')" type="button">📚 Прочитанные истории</button>
-              <button class="account-tab" id="gamesTab" onclick="switchTab('games')" type="button">🎮 Достижения</button>
-            </div>
-            
-            <section id="tabStories">
-              <h2>Моя библиотека</h2>
-              <div id="storiesList">
-                <div class="story-row"><span class="story-title">📖 Последний выстрел</span><span class="story-status">✓ Прочитано</span></div>
-                <div class="story-row"><span class="story-title">📖 Струны судьбы</span><span class="story-status">✓ Прочитано</span></div>
-              </div>
-            </section>
-            
-            <section id="tabGames" hidden>
-              <h2>Игровые достижения</h2>
-              <div id="gamesList">
-                <div class="empty-state">Здесь появятся ваши достижения.</div>
-              </div>
-            </section>
+  <main class="account-wrap">
+    <section id="profileScreen" class="account-layout">
+
+      <aside>
+        <div class="account-card account-profile">
+          <div class="account-cover">
+            <label class="account-avatar" id="avatarContainer" title="Загрузить / сменить фото">
+              <span class="avatar-letter" id="avatarLetter">?</span>
+              <img id="avatar-preview" src="" alt="">
+              <span class="plus-btn" aria-hidden="true">+</span>
+              <input type="file" id="file-input" accept="image/*" style="display:none;">
+            </label>
           </div>
-          
-          <section class="account-panel" id="adminPanel" hidden>
-            <h2>📊 Статистика сайта</h2>
-            <div class="admin-grid">
-              <div class="admin-stat"><div class="admin-value" id="statVisits">0</div><div class="admin-label">Посещения сайта</div></div>
-              <div class="admin-stat"><div class="admin-value" id="statUsers">0</div><div class="admin-label">Зарегистрированные аккаунты</div></div>
-              <div class="admin-stat"><div class="admin-value" id="statBot">0</div><div class="admin-label">Переходы к Telegram-боту</div></div>
+
+          <div class="account-profile-body">
+            <h2 class="account-name" id="displayName">Читатель</h2>
+            <div class="account-login" id="displayLogin">—</div>
+            <div class="account-actions">
+              <button class="account-btn" id="btnGoToAdmin" type="button" onclick="showAdmin()" hidden>Админ-панель</button>
+              <button class="account-btn secondary" type="button" onclick="logout()">Выйти</button>
+            </div>
+            <div class="account-count">Прочитано рассказов: <strong id="statsReadCount">0</strong></div>
+          </div>
+        </div>
+      </aside>
+
+      <div>
+        <div class="account-panel">
+          <div class="account-tabs">
+            <button class="account-tab active" id="storiesTab" onclick="switchTab('stories')" type="button">📚 Прочитанные истории</button>
+            <button class="account-tab" id="gamesTab" onclick="switchTab('games')" type="button">🎮 Достижения</button>
+          </div>
+
+          <section id="tabStories">
+            <h2>Моя библиотека</h2>
+            <div id="storiesList"></div>
+          </section>
+
+          <section id="tabGames" hidden>
+            <h2>Игровые достижения</h2>
+            <div id="gamesList">
+              <div class="empty-state">Здесь появятся ваши достижения.</div>
             </div>
           </section>
         </div>
-      </section>
+
+        <section class="account-panel" id="adminPanel" hidden>
+          <h2>📊 Статистика сайта</h2>
+          <div class="admin-grid">
+            <div class="admin-stat"><div class="admin-value" id="statVisits">0</div><div class="admin-label">Посещения сайта</div></div>
+            <div class="admin-stat"><div class="admin-value" id="statUsers">0</div><div class="admin-label">Зарегистрированные аккаунты</div></div>
+            <div class="admin-stat"><div class="admin-value" id="statBot">0</div><div class="admin-label">Переходы к Telegram-боту</div></div>
+          </div>
+        </section>
+      </div>
+
+    </section>
   </main>
-  <script src="site-stats.js"></script><script src="theme.js"></script><script src="account.js"></script>
-</body></html>
+
+  <script src="site-stats.js"></script>
+  <script src="theme.js"></script>
+  <script src="account.js"></script>
+</body>
+</html>

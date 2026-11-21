@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вход — Личный кабинет</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root{--profile-red:#ff3333;--profile-muted:#888;--profile-line:rgba(255,51,51,.28)}
+    body.light-theme{--profile-muted:#806d69;--profile-line:rgba(174,35,35,.22)}
+
+    .auth-area{min-height:80vh;display:grid;place-items:center;padding:90px 22px 40px;color:var(--text-color);font-family:Arial,sans-serif}
+    .auth-card{width:min(100%,420px);padding:30px;background:var(--card-bg);border:1px solid var(--accent-color);border-radius:16px;box-shadow:0 0 25px rgba(255,51,51,.13)}
+    .auth-card h1{text-align:center;font:bold 25px Georgia,serif;color:var(--accent-color);margin:0 0 20px}
+    .auth-tabs{display:flex;background:rgba(128,128,128,.12);border-radius:9px;padding:4px;margin-bottom:18px}
+    .auth-tab{flex:1;padding:10px;border:0;border-radius:7px;background:transparent;color:var(--text-color);cursor:pointer;font-weight:bold;font-size:15px}
+    .auth-tab.active{background:var(--accent-color);color:#fff}
+    .auth-input{width:100%;box-sizing:border-box;padding:12px 13px;margin-bottom:13px;border:1px solid var(--profile-line);border-radius:8px;background:var(--bg-color);color:var(--text-color);font-size:15px}
+    .auth-submit{width:100%;padding:12px;border:0;border-radius:8px;background:var(--accent-color);color:white;font-weight:bold;font-size:15px;cursor:pointer}
+    .auth-error{min-height:18px;color:var(--accent-color);font-size:13px;text-align:center;margin:13px 0 0}
+  </style>
+
+  <!-- Быстрая проверка: если уже вошёл — сразу в профиль -->
+  <script>
+    if (localStorage.getItem('user_role') && localStorage.getItem('user_phone')) {
+      location.replace('account.html');
+    }
+  </script>
+</head>
+<body>
+  <input type="checkbox" id="menu-toggle">
+  <label for="menu-toggle" class="menu-btn">☰</label>
+  <nav class="sidebar">
+    <label for="menu-toggle" class="close-btn">✕</label>
+    <a href="index.html">Главная</a>
+    <a href="history.html">Рассказы</a>
+    <a href="personaji.html">Персонажи</a>
+    <a href="obomne.html">Обо мне</a>
+    <a href="account.html" style="color:var(--accent-color) !important;font-weight:bold">👤 Личный кабинет</a>
+    <button type="button" class="theme-toggle-btn" onclick="toggleTheme()" style="font-family:inherit;font-size:inherit;">🌓 Сменить тему</button>
+  </nav>
+
+  <main class="auth-area">
+    <div class="auth-card">
+      <h1>Личный кабинет</h1>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="loginTab" type="button" onclick="setAuthMode('login')">Вход</button>
+        <button class="auth-tab" id="registerTab" type="button" onclick="setAuthMode('register')">Регистрация</button>
+      </div>
+      <input class="auth-input" id="authPhone" type="text" autocomplete="username" placeholder="Логин">
+      <input class="auth-input" id="authPass" type="password" autocomplete="current-password" placeholder="Пароль (от 6 символов)">
+      <button class="auth-submit" id="authSubmit" type="button" onclick="handleAuth()">Войти</button>
+      <p class="auth-error" id="authError" aria-live="polite"></p>
+    </div>
+  </main>
+
+  <script src="site-stats.js"></script>
+  <script src="theme.js"></script>
+  <script src="account.js"></script>
+</body>
+</html>
