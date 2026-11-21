@@ -19,6 +19,7 @@
         <a href="history.html">Рассказы</a>
         <a href="personaji.html">Персонажи</a>
         <a href="obomne.html">Обо мне</a>
+        <a href="account.html" style="color:#ff3333;font-weight:bold">👤 Личный кабинет</a>
         <!-- Кнопка переключения темы -->
 <label for="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()">🌓 Сменить тему</label>
     </nav>
@@ -32,7 +33,8 @@
 </p>
 <p>Чтобы прочитать рассказы нажмите на раздел <a href="history.html">Рассказы</a> . После прочтения просьба запомнить номер страницы или главы, так как разраб(тоже  Desta) не додумалась еще как сделать сохраненку(ну или я хз работает ли)(Опытные программисты найдитесь пожалуйста..)</p>
 <p>Главные и второстепенные персонажи представлены в разделе <a href="personaji.html">Персонажи</a>. Там можно узнать их истории, увлечения и то, в каких рассказах они появляются.</p>
-
+<p>Так же можно зайти в свой <a href="account.html">аккаунт </a>. В нем можно будет смотреть какие рассказы прочитаны и прогресс игр</p>
+<p><i>К сожелению Игры на данный момент отсутствуют</i></p>
 
 
 <div class="feedback-container">
@@ -50,7 +52,7 @@
         <input type="hidden" id="ratingValue" value="0">
                 <div class="input-group" style="text-align: center; margin-bottom: 20px;">
             <p style="font-size: 20px; color: #ff3333; margin-bottom: 10px; text-align: center; margin-right: 5%;">
-                ! Чтобы получить ответ от бота, сначала нажмите кнопку ниже, а затем отправьте отзыв!
+               Для получения ответа от администратора, запустите бота.
             </p>
             <!-- ЗАМЕНИ Sayt_ocenka_bot НА ИМЯ СВОЕГО БОТА -->
             <a href="https://t.me/Sayt_ocenka_bot" target="_blank" style="background-color: #ec391a; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; display: inline-block; box-shadow: 0 0 10px rgba(235, 13, 13, 0.5);">
@@ -66,11 +68,7 @@
             <label for="userComment">Что вы думаете о сайте?</label>
             <textarea id="userComment" rows="4" placeholder="Напишите ваш отзыв..." required></textarea>
         </div>
-         <div class="input-group">
-            <label for="tgUsername">Ваш Telegram (чтобы я могла ответить):</label>
-            <input type="text" id="tgUsername" placeholder="@username (не обязательно)">
-        </div>
-
+        
         <button type="submit" id="submitBtn">Отправить отзыв</button>
         <!-- Вот сюда скрипт будет выводить ошибки, если что-то пойдет не так -->
         <p id="formStatus" style="font-weight: bold; text-align: center; margin-top: 15px;"></p>

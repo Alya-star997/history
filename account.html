@@ -24,23 +24,96 @@
 </head>
 <body>
   <input type="checkbox" id="menu-toggle"><label for="menu-toggle" class="menu-btn">☰</label>
-  <nav class="sidebar"><label for="menu-toggle" class="close-btn">✕</label><a href="index.html">Главная</a><a href="history.html">Рассказы</a><a href="personaji.html">Персонажи</a><a href="obomne.html">Обо мне</a><a href="account.html" style="color:#ff3333;font-weight:bold">👤 Личный кабинет</a></nav>
+  <nav class="sidebar">
+    <label for="menu-toggle" class="close-btn">✕</label>
+    <a href="index.html">Главная</a>
+    <a href="history.html">Рассказы</a>
+    <a href="personaji.html">Персонажи</a>
+    <a href="obomne.html">Обо мне</a>
+    <a href="account.html" style="color:#ff3333;font-weight:bold">👤 Личный кабинет</a>
+    <label for="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()" href="#" onclick="alert('Вы уже находитесь тут'); return false;">🌓 Сменить тему</label>
+  </nav>
   <main class="account-wrap">
     <section id="authScreen" class="auth-area"><div class="auth-card">
-      <h1>Личный кабинет</h1><div class="auth-tabs"><button class="auth-tab active" id="loginTab" type="button" onclick="setAuthMode('login')">Вход</button><button class="auth-tab" id="registerTab" type="button" onclick="setAuthMode('register')">Регистрация</button></div>
-      <input class="auth-input" id="authPhone" type="text" autocomplete="username" placeholder="Логин"><input class="auth-input" id="authPass" type="password" autocomplete="current-password" placeholder="Пароль (от 6 символов)">
-      <button class="auth-submit" id="authSubmit" type="button" onclick="handleAuth()">Войти</button><p class="auth-error" id="authError" aria-live="polite"></p>
-    </div></section>
-    <section id="profileScreen" class="account-layout" hidden>
-      <aside><div class="account-card account-profile"><div class="account-cover"><div class="account-avatar" id="avatarLetter">U</div></div><div class="account-profile-body"><h2 class="account-name" id="displayName">Читатель</h2><div class="account-login" id="displayLogin"></div><div class="account-actions"><button class="account-btn" id="btnGoToAdmin" type="button" hidden onclick="showAdmin()">Админ-панель</button><button class="account-btn secondary" type="button" onclick="logout()">Выйти</button></div><div class="account-count">Прочитано рассказов: <strong id="statsReadCount">0</strong></div></div></div></aside>
-      <div>
-        <div class="account-panel"><div class="account-tabs"><button class="account-tab active" id="storiesTab" onclick="switchTab('stories')" type="button">📚 Прочитанные истории</button><button class="account-tab" id="gamesTab" onclick="switchTab('games')" type="button">🎮 Достижения</button></div>
-          <section id="tabStories"><h2>Моя библиотека</h2><div id="storiesList"></div></section>
-          <section id="tabGames" hidden><h2>Игровые достижения</h2><div id="gamesList"><div class="empty-state">Здесь появятся ваши достижения, рекорды и пройденные игровые испытания. Раздел уже подготовлен — игровые данные можно подключить позже.</div></div></section>
-        </div>
-        <section class="account-panel" id="adminPanel" hidden><h2>📊 Статистика сайта</h2><div class="admin-grid"><div class="admin-stat"><div class="admin-value" id="statVisits">0</div><div class="admin-label">Посещения сайта</div></div><div class="admin-stat"><div class="admin-value" id="statUsers">0</div><div class="admin-label">Зарегистрированные аккаунты</div></div><div class="admin-stat"><div class="admin-value" id="statBot">0</div><div class="admin-label">Переходы к Telegram-боту</div></div></div><p class="admin-note">Показатели сохраняются в localStorage этого браузера и не объединяются между разными посетителями. Переход к боту — это клик по ссылке, а не подтверждение запуска бота. Для общей статистики всех пользователей и точного учёта запусков Telegram-бота потребуется сервер и интеграция с Telegram.</p></section>
+      <h1>Личный кабинет</h1>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="loginTab" type="button" onclick="setAuthMode('login')">Вход</button>
+        <button class="auth-tab" id="registerTab" type="button" onclick="setAuthMode('register')">Регистрация</button>
       </div>
-    </section>
+      <input class="auth-input" id="authPhone" type="text" autocomplete="username" placeholder="Логин">
+      <input class="auth-input" id="authPass" type="password" autocomplete="current-password" placeholder="Пароль (от 6 символов)">
+      <button class="auth-submit" id="authSubmit" type="button" onclick="handleAuth()">Войти</button><p class="auth-error" id="authError" aria-live="polite"></p>
+    </div>
+  </section>
+          <section id="profileScreen" class="account-layout" hidden>
+        <!-- ЛЕВАЯ КОЛОНКА (Профиль) -->
+        <aside>
+          <div class="account-card account-profile">
+            <div class="account-cover">
+              
+              <!-- Аватарка -->
+              <div class="account-avatar" id="avatarContainer">
+                <!-- Картинка (скрыта по умолчанию) -->
+                <img id="avatar-preview" src="" alt="" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; position: absolute; top: 0; left: 0; z-index: 2;">
+                
+                <!-- Буква (показывается, пока нет фото) -->
+                
+                
+                <!-- Кнопка плюс -->
+                <label for="file-input" class="plus-btn" title="Загрузить фото">+</label>
+                
+                <!-- Скрытый инпут -->
+                <input type="file" id="file-input" accept="image/*" style="display: none;">
+              </div>
+              
+            </div>
+            
+            <div class="account-profile-body">
+              <h2 class="account-name" id="displayName">👑 Администратор</h2>
+              <div class="account-login" id="displayLogin">DestaAdmin</div>
+              <div class="account-actions">
+                <button class="account-btn" id="btnGoToAdmin" type="button" onclick="showAdmin()">Админ-панель</button>
+                <button class="account-btn secondary" type="button" onclick="logout()">Выйти</button>
+              </div>
+              <div class="account-count">Прочитано рассказов: <strong id="statsReadCount">2</strong></div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- ПРАВАЯ КОЛОНКА (Библиотека) -->
+        <div>
+          <div class="account-panel">
+            <div class="account-tabs">
+              <button class="account-tab active" id="storiesTab" onclick="switchTab('stories')" type="button">📚 Прочитанные истории</button>
+              <button class="account-tab" id="gamesTab" onclick="switchTab('games')" type="button">🎮 Достижения</button>
+            </div>
+            
+            <section id="tabStories">
+              <h2>Моя библиотека</h2>
+              <div id="storiesList">
+                <div class="story-row"><span class="story-title">📖 Последний выстрел</span><span class="story-status">✓ Прочитано</span></div>
+                <div class="story-row"><span class="story-title">📖 Струны судьбы</span><span class="story-status">✓ Прочитано</span></div>
+              </div>
+            </section>
+            
+            <section id="tabGames" hidden>
+              <h2>Игровые достижения</h2>
+              <div id="gamesList">
+                <div class="empty-state">Здесь появятся ваши достижения.</div>
+              </div>
+            </section>
+          </div>
+          
+          <section class="account-panel" id="adminPanel" hidden>
+            <h2>📊 Статистика сайта</h2>
+            <div class="admin-grid">
+              <div class="admin-stat"><div class="admin-value" id="statVisits">0</div><div class="admin-label">Посещения сайта</div></div>
+              <div class="admin-stat"><div class="admin-value" id="statUsers">0</div><div class="admin-label">Зарегистрированные аккаунты</div></div>
+              <div class="admin-stat"><div class="admin-value" id="statBot">0</div><div class="admin-label">Переходы к Telegram-боту</div></div>
+            </div>
+          </section>
+        </div>
+      </section>
   </main>
   <script src="site-stats.js"></script><script src="theme.js"></script><script src="account.js"></script>
 </body></html>

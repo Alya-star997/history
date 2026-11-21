@@ -86,9 +86,13 @@
         });
     }
 
-    // 5. Кнопка "Прочитано"
+        // 5. Кнопка "Прочитано"
     function markAsRead() {
-        localStorage.setItem(currentStoryId + '_read', 'true');
+        // Получаем логин того, кто сейчас читает
+        const currentUser = localStorage.getItem('user_phone') || 'guest';
+        
+        // Сохраняем прочтение ЛИЧНО ДЛЯ НЕГО
+        localStorage.setItem(currentStoryId + '_read_' + currentUser, 'true');
         localStorage.setItem(currentStoryId + '_page', 0); // Сбрасываем страницу на первую
         window.location.href = 'history.html'; 
     }
@@ -164,4 +168,21 @@
             });
         }
     });
+function markStoryAsRead(storyName) {
+    // storyName должен быть либо 'story_last_shot_read', либо 'story_struni_read'
+    const currentUser = localStorage.getItem('user_phone') || 'guest';
+    localStorage.setItem(storyName + '_' + currentUser, 'true');
+}
 
+// ПРИМЕР: как привязать это к вашей кнопке
+// Если у вас есть кнопка <button id="finishBtn">Завершить</button>:
+
+document.getElementById('finishBtn').addEventListener('click', function() {
+    // Если это рассказ "Последний выстрел":
+    markStoryAsRead('story_last_shot_read'); 
+    
+    // Если это рассказ "Струны судьбы":
+    // markStoryAsRead('story_struni_read'); 
+    
+    alert('Рассказ добавлен в прочитанные!');
+});

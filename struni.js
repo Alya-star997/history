@@ -73,7 +73,15 @@
             localStorage.setItem(currentStoryId + '_page', 0);
             window.location.href = 'history.html'; 
         }
+        function markAsRead() {
+            // Получаем логин того, кто сейчас читает
+            const currentUser = localStorage.getItem('user_phone') || 'guest';
 
+            // Сохраняем прочтение ЛИЧНО ДЛЯ НЕГО
+            localStorage.setItem(currentStoryId + '_read_' + currentUser, 'true');
+            localStorage.setItem(currentStoryId + '_page', 0);
+            window.location.href = 'history.html'; 
+        }
         // Логика галереи
         let currentGalleryImageIndex = 0;
         let galleryImages = [];
@@ -141,5 +149,23 @@ document.getElementById('vikaModal').addEventListener('click', function(event) {
     if (event.target === this) {
         closeVikaGallery();
     }
+});
+function markStoryAsRead(storyName) {
+    // storyName должен быть либо 'story_last_shot_read', либо 'story_struni_read'
+    const currentUser = localStorage.getItem('user_phone') || 'guest';
+    localStorage.setItem(storyName + '_' + currentUser, 'true');
+}
+
+// ПРИМЕР: как привязать это к вашей кнопке
+// Если у вас есть кнопка <button id="finishBtn">Завершить</button>:
+
+document.getElementById('finishBtn').addEventListener('click', function() {
+    // Если это рассказ "Последний выстрел":
+    markStoryAsRead('story_last_shot_read'); 
+    
+    // Если это рассказ "Струны судьбы":
+    // markStoryAsRead('story_struni_read'); 
+    
+    alert('Рассказ добавлен в прочитанные!');
 });
    
