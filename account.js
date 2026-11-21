@@ -1,4 +1,7 @@
-
+ const ADMIN_LOGIN = "DestaAdmin";
+const ADMIN_PASSWORD = "Chan_y_UwU45";
+let isAdmin = false;
+let authMode = 'login';
 
 
 function readUsers(){ try{return JSON.parse(localStorage.getItem('site_users')||'{}')}catch{return {}} }
@@ -177,8 +180,5 @@ document.addEventListener('DOMContentLoaded',()=>{
       }
     });
   }
-  const ADMIN_LOGIN = "DestaAdmin";
-const ADMIN_PASSWORD = "Chan_y_UwU45";
-let isAdmin = false;
-let authMode = 'login';
+ 
 });
