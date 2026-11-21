@@ -1,8 +1,5 @@
-// Демонстрационная авторизация для статического сайта.
-const ADMIN_LOGIN = "DestaAdmin";
-const ADMIN_PASSWORD = "Chan_y_UwU45";
-let isAdmin = false;
-let authMode = 'login';
+
+
 
 function readUsers(){ try{return JSON.parse(localStorage.getItem('site_users')||'{}')}catch{return {}} }
 
@@ -13,6 +10,7 @@ function setAuthMode(mode){
   document.getElementById('authSubmit').textContent=mode==='login'?'Войти':'Зарегистрироваться';
   document.getElementById('authError').textContent='';
 }
+
 
 function handleAuth(){
   const login=document.getElementById('authPhone').value.trim();
@@ -179,4 +177,8 @@ document.addEventListener('DOMContentLoaded',()=>{
       }
     });
   }
+  const ADMIN_LOGIN = "DestaAdmin";
+const ADMIN_PASSWORD = "Chan_y_UwU45";
+let isAdmin = false;
+let authMode = 'login';
 });
